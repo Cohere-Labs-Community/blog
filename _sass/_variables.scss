@@ -8,17 +8,17 @@
 // Colors
 $red-color: #ff3636 !default;
 $red-color-dark: #b71c1c !default;
-$orange-color: #f29105 !default;
-$blue-color: #0076df !default;
-$blue-color-dark: #00369f !default;
-$cyan-color: #2698ba !default;
+$orange-color: #dd5132 !default;
+$blue-color: #4c6ee6 !default;
+$blue-color-dark: #2d4cb9 !default;
+$cyan-color: #cbefff !default;
 $light-cyan-color: color.adjust($cyan-color, $lightness: 25%);
 $green-color: #00ab37 !default;
 $green-color-lime: #b7d12a !default;
 $green-color-dark: #009f06 !default;
 $green-color-light: #ddffdd !default;
 $green-color-bright: #11d68b !default;
-$purple-color: #b509ac !default;
+$purple-color: #4c6ee6 !default;
 $light-purple-color: color.adjust($purple-color, $lightness: 25%);
 $pink-color: #f92080 !default;
 $pink-color-light: #ffdddd !default;
@@ -26,16 +26,29 @@ $yellow-color: #efcc00 !default;
 
 $grey-color: #828282 !default;
 $grey-color-light: color.adjust($grey-color, $lightness: 40%);
-$grey-color-dark: #1c1c1d;
+$grey-color-dark: #061324;
 $grey-900: #212529;
 
 $white-color: #ffffff !default;
 $black-color: #000000 !default;
 
+// Cohere Labs brand colors
+$cohere-navy: #061324 !default;
+$cohere-blue-700: #2d4cb9 !default;
+$cohere-blue-500: #4c6ee6 !default;
+$cohere-blue-300: #8fa6f9 !default;
+$cohere-blue-100: #cbefff !default;
+$cohere-blue-50: #e5ebff !default;
+$cohere-mushroom: #f0eee9 !default;
+$cohere-ink: #17171c !default;
+$cohere-green: #5bbf8a !default;
+$cohere-lime: #ccf61c !default;
+$cohere-coral: #dd5132 !default;
+
 // Theme colors
 
-$code-bg-color-light: rgba($purple-color, 0.05);
-$code-bg-color-dark: #2c3237 !default;
+$code-bg-color-light: rgba($cohere-blue-500, 0.08);
+$code-bg-color-dark: #101b2c !default;
 
 // Font awesome location
 $fa-font-path: "../webfonts";

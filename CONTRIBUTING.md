@@ -10,6 +10,8 @@ This blog publishes research notes, experiment reports, implementation writeups,
 4. Include enough evidence for readers to inspect the work: datasets, model versions, prompts, metrics, code links, or limitations where relevant.
 5. Run formatting and a local build before review.
 
+For a reusable starting point, copy `_drafts/hugging-face-style-post-template.md` into `_posts/` and rename it as `YYYY-MM-DD-title.md`. It is designed for tutorial, research, model, dataset, launch, interview, and benchmark-style posts.
+
 ## Front Matter
 
 Use clear metadata so the post index, archives, and social previews remain useful:
@@ -27,6 +29,8 @@ toc:
   - name: Findings
 ---
 ```
+
+Use `authors:` when a post should show linked Hugging Face, GitHub, or personal profiles in the article byline and author cards.
 
 Add optional Distill flags only when the post uses the feature:
 
