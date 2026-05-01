@@ -1,0 +1,136 @@
+<!DOCTYPE html> <html> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Research Post Patterns | Cohere Labs Community Blog </title> <meta name="author" content="Cohere Labs Community"> <meta name="description" content="Copyable patterns for writing clear, reproducible research posts."> <meta name="keywords" content="cohere, cohere labs, ai research, machine learning, research blog, large language models, natural language processing, science, data"> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <link rel="stylesheet" href="/blog/assets/css/bootstrap.min.css?v=a4b3f509e79c54a512b890d73235ef04"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.4/dist/bootstrap-table.min.css" integrity="sha256-uRX+PiRTR4ysKFRCykT8HLuRCub26LgXJZym3Yeom1c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="/blog/assets/css/academicons.min.css?v=f0b7046b84e425c55f3463ac249818f5"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/blog/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@2.4.1/build/pseudocode.min.css" integrity="sha256-VwMV//xgBPDyRFVSOshhRhzJRDyBmIACniLPpeXNUdc=" crossorigin="anonymous"> <link rel="shortcut icon" href="/blog/assets/img/favicon.png?v=edad46c7a5e36a6140394cbd98aa504d"> <link rel="stylesheet" href="/blog/assets/css/main.css?v=d41d8cd98f00b204e9800998ecf8427e"> <link rel="canonical" href="https://cohere-labs-community.github.io/blog/2026/research-post-patterns/"> <script src="/blog/assets/js/theme.js?v=c20ba7a5b750a9ea6d4d623343cad0c7"></script> <link defer rel="stylesheet" href="/blog/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css" integrity="sha256-Oppd74ucMR5a5Dq96FxjEzGF7tTw2fZ/6ksAqDCM8GY=" crossorigin="anonymous" media="screen and (prefers-color-scheme: light)"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css" integrity="sha256-nyCNAiECsdDHrr/s2OQsp5l9XeY2ZJ0rMepjCT2AkBk=" crossorigin="anonymous" media="screen and (prefers-color-scheme: dark)"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/diff2html@3.4.47/bundles/css/diff2html.min.css" integrity="sha256-IMBK4VNZp0ivwefSn51bswdsrhk0HoMTLc2GqFHFBXg=" crossorigin="anonymous"> <script src="/blog/assets/js/distillpub/template.v2.js"></script> <script src="/blog/assets/js/distillpub/transforms.v2.js"></script> </head> <body> <d-front-matter> <script async type="text/json">
+      {
+            "title": "Research Post Patterns",
+            "description": "Copyable patterns for writing clear, reproducible research posts.",
+            "published": "April 30, 2026",
+            "authors": [
+              
+              {
+                "author": "Cohere Labs Community",
+                "authorURL": "",
+                "affiliations": [
+                  {
+                    "name": "Cohere Labs",
+                    "url": ""
+                  }
+                ]
+              },
+              
+              {
+                "author": "Community Editors",
+                "authorURL": "",
+                "affiliations": [
+                  {
+                    "name": "Cohere Labs Community",
+                    "url": ""
+                  }
+                ]
+              }
+              
+            ],
+            "katex": {
+              "delimiters": [
+                {
+                  "left": "$",
+                  "right": "$",
+                  "display": false
+                },
+                {
+                  "left": "$$",
+                  "right": "$$",
+                  "display": true
+                }
+              ]
+            }
+          }
+    </script> </d-front-matter> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/blog/"> Cohere Labs Community Blog </a> <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse text-right" id="navbarNav"> <ul class="navbar-nav ml-auto flex-nowrap"> <li class="toggle-container"> <button id="light-toggle" title="Change theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> </header> <div class="post distill"> <d-title> <h1>Research Post Patterns</h1> <p>Copyable patterns for writing clear, reproducible research posts.</p> </d-title> <d-byline></d-byline> <d-article> <d-contents> <nav class="l-text figcaption"> <h3>Contents</h3> <div> <a href="#how-to-use-this-guide">How To Use This Guide</a> </div> <div> <a href="#abstract-and-tldr">Abstract And TLDR</a> </div> <div> <a href="#reproducibility-box">Reproducibility Box</a> </div> <div> <a href="#results-tables">Results Tables</a> </div> <div> <a href="#details-and-appendices">Details And Appendices</a> </div> <div> <a href="#pseudocode">Pseudocode</a> </div> <div> <a href="#code-diffs">Code Diffs</a> </div> <div> <a href="#citations">Citations</a> </div> <div> <a href="#before-you-publish">Before You Publish</a> </div> </nav> </d-contents> <p>Use these patterns when a post presents a claim, experiment, implementation detail, dataset, model behavior, or paper explanation. You do not need every section in every post. Pick the blocks that make the work easier to understand and verify.</p> <h2 id="how-to-use-this-guide">How To Use This Guide</h2> <p>Start with the simplest structure that makes the argument clear:</p> <ol> <li>State the question.</li> <li>Give the short answer.</li> <li>Show the evidence.</li> <li>Explain the limitations.</li> <li>Link the artifacts readers need to reproduce or inspect the result.</li> </ol> <p>For most posts, a TLDR, a small results table, and a reproducibility box are enough. Add pseudocode, diffs, or appendices only when they clarify the core idea.</p> <h2 id="abstract-and-tldr">Abstract And TLDR</h2> <p>Use a short opening block when the post is longer than a few paragraphs. It should tell the reader what they will learn before they commit to the details.</p> <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gt">&gt; **TLDR:** We compare two multilingual evaluation settings and find that prompt translation changes the ranking for low-resource languages. The result is strongest on generation tasks and weakest on classification tasks.</span>
+<span class="gt">&gt;</span>
+<span class="gt">&gt; **Key evidence:** A controlled ablation over four languages, one model family, and two prompt formats.</span>
+<span class="gt">&gt;</span>
+<span class="gt">&gt; **Main limitation:** The study uses a small benchmark slice, so treat it as a debugging signal rather than a leaderboard claim.</span>
+<span class="gt">&gt; {: .block-tip }</span>
+</code></pre></div></div> <blockquote class="block-tip"> <p><strong>TLDR:</strong> We compare two multilingual evaluation settings and find that prompt translation changes the ranking for low-resource languages. The result is strongest on generation tasks and weakest on classification tasks.</p> <p><strong>Key evidence:</strong> A controlled ablation over four languages, one model family, and two prompt formats.</p> <p><strong>Main limitation:</strong> The study uses a small benchmark slice, so treat it as a debugging signal rather than a leaderboard claim.</p> </blockquote> <h2 id="reproducibility-box">Reproducibility Box</h2> <p>Use a reproducibility box for experiment reports, benchmark notes, dataset writeups, or implementation posts. It should answer what someone would need to rerun or audit the result.</p> <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% details Reproducibility details %}
+<span class="p">
+-</span> <span class="gs">**Code:**</span> Link to the repository, commit, script, or notebook.
+<span class="p">-</span> <span class="gs">**Data:**</span> Name the dataset, split, filters, and any private data exclusions.
+<span class="p">-</span> <span class="gs">**Model:**</span> Name the model checkpoint, version, and decoding settings.
+<span class="p">-</span> <span class="gs">**Environment:**</span> Include hardware, dependency file, or container if relevant.
+<span class="p">-</span> <span class="gs">**Evaluation:**</span> Define metrics, prompts, judge model, and aggregation.
+<span class="p">-</span> <span class="gs">**Limitations:**</span> State what this setup does not test.
+
+{% enddetails %}
+</code></pre></div></div> <details><summary>Reproducibility details</summary> <ul> <li> <strong>Code:</strong> Link to the repository, commit, script, or notebook.</li> <li> <strong>Data:</strong> Name the dataset, split, filters, and any private data exclusions.</li> <li> <strong>Model:</strong> Name the model checkpoint, version, and decoding settings.</li> <li> <strong>Environment:</strong> Include hardware, dependency file, or container if relevant.</li> <li> <strong>Evaluation:</strong> Define metrics, prompts, judge model, and aggregation.</li> <li> <strong>Limitations:</strong> State what this setup does not test.</li> </ul> </details> <h2 id="results-tables">Results Tables</h2> <p>Use simple Markdown tables for compact benchmark or ablation summaries. Include units in the header and keep table captions or surrounding text explicit about what changed.</p> <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>| Setting           | English | Spanish | Arabic | Hindi |
+| ----------------- | ------: | ------: | -----: | ----: |
+| Baseline prompts  |    68.0 |    54.0 |   49.0 |  46.0 |
+| Localized prompts |    70.0 |    61.0 |   58.0 |  55.0 |
+| Difference        |    +2.0 |    +7.0 |   +9.0 |  +9.0 |
+</code></pre></div></div> <table> <thead> <tr> <th>Setting</th> <th style="text-align: right">English</th> <th style="text-align: right">Spanish</th> <th style="text-align: right">Arabic</th> <th style="text-align: right">Hindi</th> </tr> </thead> <tbody> <tr> <td>Baseline prompts</td> <td style="text-align: right">68.0</td> <td style="text-align: right">54.0</td> <td style="text-align: right">49.0</td> <td style="text-align: right">46.0</td> </tr> <tr> <td>Localized prompts</td> <td style="text-align: right">70.0</td> <td style="text-align: right">61.0</td> <td style="text-align: right">58.0</td> <td style="text-align: right">55.0</td> </tr> <tr> <td>Difference</td> <td style="text-align: right">+2.0</td> <td style="text-align: right">+7.0</td> <td style="text-align: right">+9.0</td> <td style="text-align: right">+9.0</td> </tr> </tbody> </table> <p>When a table needs sorting, search, or pagination, set <code class="language-plaintext highlighter-rouge">pretty_table: true</code> in front matter and use the Bootstrap Table pattern. Otherwise, prefer plain Markdown tables because they are easier to review.</p> <h2 id="details-and-appendices">Details And Appendices</h2> <p>Details blocks are useful for extra prompts, hyperparameters, commands, derivations, or evaluation caveats that would interrupt the main post.</p> <details><summary>Example prompt template</summary> <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>You are evaluating whether the answer is supported by the passage.
+
+Passage:
+
+
+Answer:
+
+
+Return one of: supported, unsupported, unclear.
+</code></pre></div></div> </details> <p>Use details blocks when the reader may want the information, but does not need it to follow the main argument.</p> <h2 id="pseudocode">Pseudocode</h2> <p>Use pseudocode for algorithms, evaluation loops, reranking procedures, decoding strategies, or data filtering logic. Enable it with <code class="language-plaintext highlighter-rouge">pseudocode: true</code> in front matter.</p> <p>Paste a fenced <code class="language-plaintext highlighter-rouge">pseudocode</code> block like this:</p> <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">```</span><span class="nl">pseudocode
+</span><span class="sb">\begin{algorithm}
+\caption{Evaluate a prompt variant}
+\begin{algorithmic}
+\PROCEDURE{EvaluateVariant}{$$D, M, P$$}
+    \STATE $$total = 0$$
+    \STATE $$count = 0$$
+    \FOR{$$i = 1$$ \TO $$|D|$$}
+        \STATE $$(x, y) = D[i]$$
+        \STATE $$prediction = M(P(x))$$
+        \STATE $$total = total + metric(prediction, y)$$
+        \STATE $$count = count + 1$$
+    \ENDFOR
+    \STATE return $$total / count$$
+\ENDPROCEDURE
+\end{algorithmic}
+\end{algorithm}</span>
+<span class="p">```</span>
+</code></pre></div></div> <p>Rendered result:</p> <pre><code class="language-pseudocode">\begin{algorithm}
+\caption{Evaluate a prompt variant}
+\begin{algorithmic}
+\PROCEDURE{EvaluateVariant}{$$D, M, P$$}
+    \STATE $$total = 0$$
+    \STATE $$count = 0$$
+    \FOR{$$i = 1$$ \TO $$|D|$$}
+        \STATE $$(x, y) = D[i]$$
+        \STATE $$prediction = M(P(x))$$
+        \STATE $$total = total + metric(prediction, y)$$
+        \STATE $$count = count + 1$$
+    \ENDFOR
+    \STATE return $$total / count$$
+\ENDPROCEDURE
+\end{algorithmic}
+\end{algorithm}
+</code></pre> <h2 id="code-diffs">Code Diffs</h2> <p>Use code diffs for implementation notes where the change itself is the result. Enable it with <code class="language-plaintext highlighter-rouge">code_diff: true</code> and use the <code class="language-plaintext highlighter-rouge">diff2html</code> code block language.</p> <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">```</span><span class="nl">diff2html
+</span><span class="sb">diff --git a/eval.py b/eval.py
+index 1111111..2222222 100644
+--- a/eval.py
++++ b/eval.py
+@@ -8,7 +8,7 @@ def normalize_score(raw_score, num_examples):
+     if num_examples == 0:
+         return 0.0
+
+-    return raw_score / len(dataset)
++    return raw_score / num_examples</span>
+<span class="p">```</span>
+</code></pre></div></div> <pre><code class="language-diff2html">diff --git a/eval.py b/eval.py
+index 1111111..2222222 100644
+--- a/eval.py
++++ b/eval.py
+@@ -8,7 +8,7 @@ def normalize_score(raw_score, num_examples):
+     if num_examples == 0:
+         return 0.0
+
+-    return raw_score / len(dataset)
++    return raw_score / num_examples
+</code></pre> <p>Follow the diff with a short explanation of the behavioral impact. Do not make readers infer the result from the patch alone.</p> <h2 id="citations">Citations</h2> <p>Use inline links for ordinary references. Use Distill citations and a BibTeX file when the post depends on several papers or when the bibliography should appear in the appendix.</p> <p>The main writing guide includes a live citation example and the front matter needed for <code class="language-plaintext highlighter-rouge">bibliography: my-post.bib</code>.</p> <h2 id="before-you-publish">Before You Publish</h2> <p>Before asking for review, check that the post has:</p> <ul> <li>A clear claim or question near the top.</li> <li>Enough context for readers outside the immediate project.</li> <li>A results table, figure, code snippet, or derivation that supports the claim.</li> <li>A limitations paragraph that says what the post does not prove.</li> <li>Reproducibility details for any experiment or benchmark.</li> <li>Links to papers, code, data, or model cards that readers need.</li> </ul> </d-article> <d-appendix> <d-footnote-list></d-footnote-list> <d-citation-list></d-citation-list> </d-appendix> <d-article> <section class="author-bios" aria-labelledby="author-bios-title"> <h2 id="author-bios-title"> About the authors </h2> <div class="author-bios-grid"> <article class="author-bio-card"> <div class="author-bio-avatar author-bio-avatar-fallback" aria-hidden="true"> C </div> <div class="author-bio-content"> <h3> Cohere Labs Community </h3> <p class="author-bio-affiliation">Cohere Labs</p> <p>Cohere Labs Community members share research notes, technical essays, experiment reports, and practical perspectives on AI.</p> </div> </article> <article class="author-bio-card"> <div class="author-bio-avatar author-bio-avatar-fallback" aria-hidden="true"> C </div> <div class="author-bio-content"> <h3> Community Editors </h3> <p class="author-bio-affiliation">Cohere Labs Community</p> <p>Editors help contributors make posts clearer, reproducible, and useful for readers across the Cohere Labs Community.</p> </div> </article> </div> </section> <br> <br> </d-article> </div> <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script src="/blog/assets/js/bootstrap.bundle.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script> <script src="/blog/assets/js/distillpub/overrides.js"></script> <script src="https://cdn.jsdelivr.net/npm/diff2html@3.4.47/bundles/js/diff2html-ui.min.js" integrity="sha256-eU2TVHX633T1o/bTQp6iIJByYJEtZThhF9bKz/DcbbY=" crossorigin="anonymous"></script> <script defer src="/blog/assets/js/diff2html-setup.js?v=80a6e52ce727518bbd3aed2bb6ba5601" type="text/javascript"></script> <script defer src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.4/dist/bootstrap-table.min.js" integrity="sha256-4rppopQE9POKfukn2kEvhJ9Um25Cf6+IDVkARD0xh78=" crossorigin="anonymous"></script> <script src="/blog/assets/js/no_defer.js?v=2781658a0a2b13ed609542042a859126"></script> <script defer src="/blog/assets/js/common.js?v=2346d75833e209d44489391c2b8cc3c0"></script> <script defer src="/blog/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pseudocode@2.4.1/build/pseudocode.min.js" integrity="sha256-aVkDxqyzrB+ExUsOY9PdyelkDhn/DfrjWu08aVpqNlo=" crossorigin="anonymous"></script> <script src="/blog/assets/js/pseudocode-setup.js?v=b7ae791a4b0e0db88cb2e775cecd8b82"></script> <script src="/blog/assets/js/tabs.min.js?v=b8748955e1076bbe0dabcf28f2549fdc"></script> <script src="/blog/assets/js/vanilla-back-to-top.min.js?v=f40d453793ff4f64e238e420181a1d17"></script> <script>
+    addBackToTop();
+  </script> </body> </html>
