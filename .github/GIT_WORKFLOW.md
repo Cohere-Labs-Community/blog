@@ -24,11 +24,11 @@ All commit messages should follow this format:
 **Examples:**
 
 ```
-feat: Add dark mode toggle button to header
-fix: Correct baseurl in project site configuration
-docs: Update INSTALL.md with Docker troubleshooting
-style: Format all Liquid templates with Prettier
-config: Enable blog section in _config.yml
+feat: Add reusable research post figure block
+fix: Correct baseurl in site configuration
+docs: Update CONTRIBUTING.md with citation guidance
+style: Format Liquid templates with Prettier
+config: Update blog metadata in _config.yml
 chore: Update Jekyll dependencies with bundle update --all
 ```
 

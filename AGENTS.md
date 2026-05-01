@@ -1,81 +1,46 @@
-# Agent Guidelines for al-folio
+# Agent Guidelines
 
-A simple, clean, and responsive Jekyll theme for academics.
+This repository is the Cohere Labs Community research blog. It is a trimmed Jekyll site focused on posts, not the full upstream al-folio academic website.
 
-## Quick Links by Role
+## Start Here
 
-- **Are you a coding agent?** → Read [`.github/copilot-instructions.md`](.github/copilot-instructions.md) first (tech stack, build, CI/CD, common pitfalls & solutions)
-- **Customizing the site?** → See [`.github/agents/customize.agent.md`](.github/agents/customize.agent.md)
-- **Writing documentation?** → See [`.github/agents/docs.agent.md`](.github/agents/docs.agent.md)
-- **Need setup/deployment help?** → [INSTALL.md](INSTALL.md)
-- **Troubleshooting & FAQ?** → [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
-- **Customization & theming?** → [CUSTOMIZE.md](CUSTOMIZE.md)
-- **Quick 5-min start?** → [QUICKSTART.md](QUICKSTART.md)
+- Read `README.md` for setup, content model, and verification commands.
+- Read `CONTRIBUTING.md` before changing research posts.
+- Read `.github/copilot-instructions.md` for the current stack and build expectations.
+- Treat `docs/upstream-al-folio/` as historical reference only.
+
+## Active Site Model
+
+- Posts live in `_posts/` and normally use `layout: distill`.
+- The homepage is `_pages/blog.md` and paginates `site.posts`.
+- The only active pages are `_pages/blog.md`, `_pages/about.md`, and `_pages/404.md`.
+- Per-post citations use BibTeX files in `assets/bibliography/` and `bibliography:` in post front matter.
+- Do not reintroduce removed al-folio features such as sitewide publications, CV rendering, projects, teachings, news collections, repository cards, search UI, Jupyter conversion, or ImageMagick responsive image generation unless explicitly requested.
 
 ## Essential Commands
 
-### Local Development (Docker)
-
-The recommended approach is using Docker.
-
 ```bash
-# Initial setup & start dev server
-docker compose pull && docker compose up
-# Site runs at http://localhost:8080
-
-# Rebuild after changing dependencies or Dockerfile
-docker compose up --build
-
-# Stop containers and free port 8080
-docker compose down
+docker compose up
+npx prettier . --write
+docker compose run --rm -e JEKYLL_ENV=production jekyll bundle exec jekyll build
 ```
 
-### Pre-Commit Checklist
+Use `docker compose up --build` after dependency or Docker changes.
 
-Before every commit, you **must** run these steps:
+## File-Specific Guidance
 
-1.  **Format Code:**
-    ```bash
-    # (First time only)
-    npm install --save-dev prettier @shopify/prettier-plugin-liquid
-    # Format all files
-    npx prettier . --write
-    ```
-2.  **Build Locally & Verify:**
+| Area                     | Instruction                                                |
+| ------------------------ | ---------------------------------------------------------- |
+| Markdown posts and pages | `.github/instructions/markdown-content.instructions.md`    |
+| Per-post BibTeX          | `.github/instructions/bibtex-bibliography.instructions.md` |
+| YAML and `_config.yml`   | `.github/instructions/yaml-configuration.instructions.md`  |
+| Liquid layouts/includes  | `.github/instructions/liquid-templates.instructions.md`    |
+| JavaScript assets        | `.github/instructions/javascript-scripts.instructions.md`  |
+| Git workflow             | `.github/GIT_WORKFLOW.md`                                  |
 
-    ```bash
-    # Rebuild the site
-    docker compose up --build
+## Working Rules
 
-    # Verify by visiting http://localhost:8080.
-    # Check navigation, pages, images, and dark mode.
-    ```
-
-## Critical Configuration
-
-When modifying `_config.yml`, these **must be updated together**:
-
-- **Personal site:** `url: https://username.github.io` + `baseurl:` (empty)
-- **Project site:** `url: https://username.github.io` + `baseurl: /repo-name/`
-- **YAML errors:** Quote strings with special characters: `title: "My: Cool Site"`
-
-## Development Workflow
-
-- **Git & Commits:** For commit message format and Git practices, see [.github/GIT_WORKFLOW.md](.github/GIT_WORKFLOW.md).
-- **Code-Specific Instructions:** Consult the relevant instruction file for your code type.
-
-| File Type                                     | Instruction File                                                                                |
-| --------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| Markdown content (`_posts/`, `_pages/`, etc.) | [markdown-content.instructions.md](.github/instructions/markdown-content.instructions.md)       |
-| YAML config (`_config.yml`, `_data/`)         | [yaml-configuration.instructions.md](.github/instructions/yaml-configuration.instructions.md)   |
-| Per-post BibTeX (`assets/bibliography/`)      | [bibtex-bibliography.instructions.md](.github/instructions/bibtex-bibliography.instructions.md) |
-| Liquid templates (`_includes/`, `_layouts/`)  | [liquid-templates.instructions.md](.github/instructions/liquid-templates.instructions.md)       |
-| JavaScript (`_scripts/`)                      | [javascript-scripts.instructions.md](.github/instructions/javascript-scripts.instructions.md)   |
-
-## Common Issues
-
-For troubleshooting, see:
-
-- [Common Pitfalls & Workarounds](.github/copilot-instructions.md#common-pitfalls--workarounds) in copilot-instructions.md
-- [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for detailed solutions
-- [GitHub Issues](https://github.com/alshedivat/al-folio/issues) to search for your specific problem.
+- Prefer small, focused changes that match the existing Jekyll and Liquid patterns.
+- Preserve Distill post support, pagination, archives, RSS, sitemap, dark mode, and comments configuration.
+- Keep maintainer docs excluded from Jekyll output through `_config.yml`.
+- Run formatting and a Docker Jekyll build after substantive edits.

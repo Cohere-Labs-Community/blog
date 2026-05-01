@@ -123,6 +123,7 @@ kramdown:
 include: ["_pages", "_scripts"]
 exclude:
   - AGENTS.md
+  - ANALYTICS.md
   - bin/
   - CLAUDE.md
   - CONTRIBUTING.md
@@ -130,6 +131,7 @@ exclude:
   - Dockerfile
   - docker-compose.yml
   - docker-compose-slim.yml
+  - docs/
   - FAQ.md
   - Gemfile
   - Gemfile.lock
