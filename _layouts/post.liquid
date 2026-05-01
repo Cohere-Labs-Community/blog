@@ -4,7 +4,6 @@ layout: default
 {% assign year = page.date | date: '%Y' %}
 {% assign tags = page.tags | join: '' %}
 {% assign categories = page.categories | join: '' %}
-{% assign url_beginning = page.url | slice: 0, 6 %}
 
 {% if page._styles %}
   <!-- Page/Post style -->
@@ -24,19 +23,11 @@ layout: default
       {% if page.meta %} &nbsp; &middot; &nbsp; {{ page.meta }}{% endif %}
     </p>
     <p class="post-tags">
-      {% if url_beginning == '/blog/' %}
-        <a href="{{ year | prepend: '/blog/' | relative_url }}"> <i class="fa-solid fa-calendar fa-sm"></i> {{ year }} </a>
-      {% else %}
-        <i class="fa-solid fa-calendar fa-sm"></i> {{ year }}
-      {% endif %}
+      <a href="{{ year | prepend: '/' | relative_url }}"> <i class="fa-solid fa-calendar fa-sm"></i> {{ year }} </a>
       {% if tags != '' %}
         &nbsp; &middot; &nbsp;
         {% for tag in page.tags %}
-          {% if url_beginning == '/blog/' %}
-            <a href="{{ tag | slugify | prepend: '/blog/tag/' | relative_url }}"> <i class="fa-solid fa-hashtag fa-sm"></i> {{ tag }}</a>
-          {% else %}
-            <i class="fa-solid fa-hashtag fa-sm"></i> {{ tag }}
-          {% endif %}
+          <a href="{{ tag | slugify | prepend: '/tag/' | relative_url }}"> <i class="fa-solid fa-hashtag fa-sm"></i> {{ tag }}</a>
           {% unless forloop.last %}
             &nbsp;
           {% endunless %}
@@ -46,11 +37,7 @@ layout: default
       {% if categories != '' %}
         &nbsp; &middot; &nbsp;
         {% for category in page.categories %}
-          {% if url_beginning == '/blog/' %}
-            <a href="{{ category | slugify | prepend: '/blog/category/' | relative_url }}"> <i class="fa-solid fa-tag fa-sm"></i> {{ category -}}</a>
-          {% else %}
-            <i class="fa-solid fa-tag fa-sm"></i> {{ category }}
-          {% endif %}
+          <a href="{{ category | slugify | prepend: '/category/' | relative_url }}"> <i class="fa-solid fa-tag fa-sm"></i> {{ category -}}</a>
           {% unless forloop.last %}
             &nbsp;
           {% endunless %}

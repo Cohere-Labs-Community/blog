@@ -16,8 +16,8 @@ keywords: cohere, cohere labs, ai research, machine learning, research blog, lar
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: favicon.png # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
-url: "" # set to the custom domain, including https://, before publishing
-baseurl: "" # the subpath of your site, e.g. /blog/. Leave blank for root
+url: "https://cohere-labs-community.github.io"
+baseurl: "/blog"
 last_updated: false # set to true if you want to display last updated in the footer
 impressum_path: # set to path to include impressum link in the footer, use the same path as permalink in a page, helps to conform with EU GDPR
 back_to_top: true # set to false to disable the back to top button
@@ -62,7 +62,7 @@ bing_site_verification: # out your bing-site-verification ID (Bing Webmaster)
 
 blog_name: Cohere Labs Blog # blog_name will be displayed in your blog page
 blog_description: Research notes and technical essays from the Cohere Labs Community
-permalink: /blog/:year/:title/
+permalink: /:year/:title/
 lsi: false # produce an index for related posts
 
 # Pagination
@@ -201,9 +201,9 @@ jekyll-archives:
   posts:
     enabled: [year, tags, categories] # enables year, tag and category archives (remove if you need to disable one of them).
     permalinks:
-      year: "/blog/:year/"
-      tags: "/blog/:type/:name/"
-      categories: "/blog/:type/:name/"
+      year: "/:year/"
+      tags: "/:type/:name/"
+      categories: "/:type/:name/"
 
 display_tags: [] # these tags will be displayed on the front page of your blog
 display_categories: [] # these categories will be displayed on the front page of your blog
