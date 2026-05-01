@@ -20,6 +20,24 @@ d-article d-byline a {
 
 d-article {
   border-top-color: var(--global-divider-color) !important;
+
+  p,
+  li {
+    line-height: 1.72;
+  }
+
+  p {
+    margin-bottom: 1.15em;
+  }
+
+  h2 {
+    margin-top: 2.2em;
+  }
+
+  h3 {
+    margin-top: 1.8em;
+  }
+
   p,
   h1,
   h2,
@@ -43,6 +61,7 @@ d-article {
     color: var(--global-theme-color) !important;
     &:hover {
       color: var(--global-theme-color) !important;
+      text-decoration: underline;
     }
   }
   b i {
@@ -50,6 +69,43 @@ d-article {
   }
   blockquote {
     border-left: 2px solid var(--global-theme-color) !important;
+  }
+
+  pre,
+  code,
+  .highlight,
+  figure.highlight {
+    max-width: 100%;
+  }
+
+  pre,
+  .highlight,
+  figure.highlight {
+    overflow-x: auto;
+  }
+
+  pre {
+    tab-size: 2;
+  }
+
+  table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  aside,
+  .l-gutter {
+    color: var(--global-text-color-light);
+    font-size: 0.9rem;
+    line-height: 1.45;
+    max-width: 220px;
+
+    p,
+    li {
+      color: var(--global-text-color-light) !important;
+      line-height: 1.45;
+    }
   }
 
   // Style taken from code blocks
@@ -94,6 +150,9 @@ d-article {
 
     nav {
       grid-column: toc;
+      position: sticky;
+      top: 5rem;
+
       a {
         border-bottom: none !important;
         &:hover {
@@ -108,7 +167,7 @@ d-article {
         display: block;
         outline: none;
         margin-bottom: 0.8em;
-        color: rgba(0, 0, 0, 0.8);
+        color: var(--global-text-color);
         font-weight: bold;
       }
       ul {
@@ -166,6 +225,33 @@ d-appendix {
   }
 }
 
+@media (min-width: 1200px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns:
+      [screen-start] minmax(16px, 1fr)
+      [page-start kicker-start] 50px
+      [middle-start] 50px
+      [text-start] 15px
+      680px
+      15px [text-end]
+      32px [gutter-start]
+      220px [gutter-end]
+      50px [middle-end]
+      50px [page-end]
+      minmax(16px, 1fr) [screen-end];
+  }
+}
+
 @media (max-width: 1024px) {
   d-article {
     d-contents {
@@ -179,6 +265,7 @@ d-appendix {
       border: 1px solid var(--global-divider-color);
       nav {
         grid-column: none;
+        position: static;
       }
     }
   }

@@ -105,9 +105,13 @@
         <d-citation-list></d-citation-list>
       </d-appendix>
 
-      <d-bibliography src="{{ page.bibliography | prepend: '/assets/bibliography/' | relative_url }}"></d-bibliography>
+      {% if page.bibliography %}
+        <d-bibliography src="{{ page.bibliography | prepend: '/assets/bibliography/' | relative_url }}"></d-bibliography>
+      {% endif %}
 
       <d-article>
+        {% include author_bios.liquid %}
+
         {% if site.related_blog_posts and site.related_blog_posts.enabled %}
           {% if page.related_posts == null or page.related_posts %}
             {% include related_posts.liquid %}

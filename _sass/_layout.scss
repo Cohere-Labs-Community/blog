@@ -42,17 +42,4 @@ body.sticky-bottom-footer {
 
 // Content layout uses Bootstrap's grid system with responsive columns
 // Main content flows naturally through container-mt-5 and Bootstrap grid classes
-// See _layouts/default.liquid and _includes/projects.liquid for examples
-
-/******************************************************************************
- * Publications
- ******************************************************************************/
-
-// Publications layout is defined in _includes/bib_search.liquid
-// Uses jekyll-scholar for BibTeX parsing and Bootstrap cards for display
-
-/*****************************************************************************
-* Projects
-*****************************************************************************/
-
-// TODO: redefine projects layout.
+// See _layouts/default.liquid for examples.

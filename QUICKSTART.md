@@ -71,16 +71,14 @@ Once your site is running, explore these customization options:
 
 ### Add Your Content
 
-- **Profile picture:** Replace `assets/img/prof_pic.jpg` with your photo
-- **About page:** Edit `_pages/about.md` to write your bio
-- **Publications:** Add entries to `_bibliography/papers.bib`
+- **About page:** Edit `_pages/about.md` to describe the blog
 - **Blog posts:** Create files in `_posts/` with format `YYYY-MM-DD-title.md`
+- **Per-post citations:** Add BibTeX files to `assets/bibliography/` and reference them from post front matter with `bibliography: your-file.bib`
 
 ### Customize Appearance
 
 - **Theme color:** Edit `_config.yml`, search for `theme_color`
-- **Enable/disable sections:** In `_config.yml`, look for `enabled: false/true` options
-- **Social media links:** Edit `_data/socials.yml`
+- **Blog metadata:** Edit the site and blog settings in `_config.yml`
 
 ### Learn More
 

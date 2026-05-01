@@ -28,9 +28,7 @@ let applyTheme = () => {
   transTheme();
   setHighlight(theme);
   setGiscusTheme(theme);
-  setSearchTheme(theme);
   setCookieConsentTheme(theme);
-  updateCalendarUrl();
 
   // if mermaid is not defined, do nothing
   if (typeof mermaid !== "undefined") {
@@ -66,19 +64,6 @@ let applyTheme = () => {
       tables[i].classList.add("table-dark");
     } else {
       tables[i].classList.remove("table-dark");
-    }
-  }
-
-  // Set jupyter notebooks themes.
-  let jupyterNotebooks = document.getElementsByClassName("jupyter-notebook-iframe-container");
-  for (let i = 0; i < jupyterNotebooks.length; i++) {
-    let bodyElement = jupyterNotebooks[i].getElementsByTagName("iframe")[0].contentWindow.document.body;
-    if (theme == "dark") {
-      bodyElement.setAttribute("data-jp-theme-light", "false");
-      bodyElement.setAttribute("data-jp-theme-name", "JupyterLab Dark");
-    } else {
-      bodyElement.setAttribute("data-jp-theme-light", "true");
-      bodyElement.setAttribute("data-jp-theme-name", "JupyterLab Light");
     }
   }
 
@@ -235,17 +220,6 @@ let setVegaLiteTheme = (theme) => {
   });
 };
 
-let setSearchTheme = (theme) => {
-  const ninjaKeys = document.querySelector("ninja-keys");
-  if (!ninjaKeys) return;
-
-  if (theme === "dark") {
-    ninjaKeys.classList.add("dark");
-  } else {
-    ninjaKeys.classList.remove("dark");
-  }
-};
-
 let setCookieConsentTheme = (theme) => {
   // Sync cookie consent modal with site's theme
   // The cookie consent library supports dark mode via the cc--darkmode class
@@ -309,34 +283,4 @@ let initTheme = () => {
   window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
     applyTheme();
   });
-};
-
-// Get the appropriate background color for Google Calendar based on current theme
-let getCalendarBgColor = () => {
-  let theme = determineComputedTheme();
-  return theme === "dark" ? "333333" : "f9f9f9";
-};
-
-// Get the Google Calendar embed URL with the correct background color
-let getCalendarUrl = (calendarId, timezone = "UTC") => {
-  const baseUrl = "https://calendar.google.com/calendar/embed";
-  const params = new URLSearchParams({
-    src: calendarId,
-    ctz: timezone,
-    mode: "WEEK",
-    showTitle: "0",
-    showPrint: "0",
-    showCalendars: "0",
-    showTabs: "0",
-    bgcolor: getCalendarBgColor(),
-  });
-  return `${baseUrl}?${params.toString()}`;
-};
-
-// Update the calendar iframe src to apply theme changes
-let updateCalendarUrl = () => {
-  const iframe = document.getElementById("calendar-iframe");
-  if (iframe && iframe.dataset.calendarId) {
-    iframe.src = getCalendarUrl(iframe.dataset.calendarId, iframe.dataset.timezone || "UTC");
-  }
 };

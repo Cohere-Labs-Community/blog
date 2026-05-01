@@ -1,0 +1,59 @@
+{% assign has_author_bios = false %}
+{% if page.authors %}
+  {% for author in page.authors %}
+    {% if author.bio or author.image %}
+      {% assign has_author_bios = true %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% if has_author_bios %}
+  <section class="author-bios" aria-labelledby="author-bios-title">
+    <h2 id="author-bios-title">
+      About the author{% if page.authors.size > 1 %}s{% endif %}
+    </h2>
+    <div class="author-bios-grid">
+      {% for author in page.authors %}
+        {% if author.bio or author.image %}
+          <article class="author-bio-card">
+            {% if author.image %}
+              {% assign author_image = author.image %}
+              {% if author_image contains '://' %}
+                {% assign author_image_src = author_image %}
+              {% elsif author_image contains 'assets/img/' %}
+                {% assign author_image_src = author_image | relative_url %}
+              {% elsif author_image contains '/' %}
+                {% assign author_image = author_image | prepend: 'assets/img/' %}
+                {% assign author_image_src = author_image | relative_url %}
+              {% else %}
+                {% assign author_image = author_image | prepend: 'assets/img/authors/' %}
+                {% assign author_image_src = author_image | relative_url %}
+              {% endif %}
+              <img class="author-bio-avatar" src="{{ author_image_src }}" alt="{{ author.name }}" loading="lazy">
+            {% else %}
+              <div class="author-bio-avatar author-bio-avatar-fallback" aria-hidden="true">
+                {{ author.name | slice: 0 }}
+              </div>
+            {% endif %}
+
+            <div class="author-bio-content">
+              <h3>
+                {% if author.url %}
+                  <a href="{{ author.url }}">{{ author.name }}</a>
+                {% else %}
+                  {{ author.name }}
+                {% endif %}
+              </h3>
+              {% if author.affiliations.name %}
+                <p class="author-bio-affiliation">{{ author.affiliations.name }}</p>
+              {% endif %}
+              {% if author.bio %}
+                <p>{{ author.bio }}</p>
+              {% endif %}
+            </div>
+          </article>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
