@@ -1,6 +1,6 @@
 ---
 layout: distill
-title: Writing for the Cohere Labs Blog
+title: Writing for the Cohere Labs Community Blog
 date: 2026-04-30 00:00:00
 description: Contributor guidelines and examples for writing clear, useful research posts.
 author: Cohere Labs Community

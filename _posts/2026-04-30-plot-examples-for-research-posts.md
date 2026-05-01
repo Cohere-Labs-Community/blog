@@ -2,7 +2,7 @@
 layout: distill
 title: Plot Examples for Research Posts
 date: 2026-04-30 01:00:00
-description: Examples for adding Chart.js, Plotly.js, ECharts, and Vega-Lite visualizations to Cohere Labs Blog posts.
+description: Examples for adding Chart.js, Plotly.js, ECharts, and Vega-Lite visualizations to Cohere Labs Community Blog posts.
 author: Cohere Labs Community
 authors:
   - name: Cohere Labs Community

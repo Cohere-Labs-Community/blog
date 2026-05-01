@@ -60,7 +60,7 @@ bing_site_verification: # out your bing-site-verification ID (Bing Webmaster)
 # Blog
 # -----------------------------------------------------------------------------
 
-blog_name: Cohere Labs Blog # blog_name will be displayed in your blog page
+blog_name: Cohere Labs Community Blog # blog_name will be displayed in your blog page
 blog_description: Research notes and technical essays from the Cohere Labs Community
 permalink: /:year/:title/
 lsi: false # produce an index for related posts
