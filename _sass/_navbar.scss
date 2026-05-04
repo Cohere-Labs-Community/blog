@@ -70,6 +70,10 @@
     height: 2rem;
   }
 
+  html[data-theme="dark"] & .cohere-brand-logo {
+    filter: brightness(0) saturate(100%) invert(91%) sepia(20%) saturate(665%) hue-rotate(171deg) brightness(104%) contrast(104%);
+  }
+
   .navbar-nav .nav-item .nav-link {
     color: var(--global-text-color);
 

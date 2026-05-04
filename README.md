@@ -51,8 +51,6 @@ bibliography: your-post.bib
 
 Use `bibliography:` only when the post has a matching file in `assets/bibliography/`. Distill posts can also enable optional features such as `tabs: true`, `chart: true`, `mermaid: true`, `code_diff: true`, `pseudocode: true`, or `pretty_table: true` when the post actually uses them.
 
-For a more structured Hugging Face-style article, copy `_drafts/hugging-face-style-post-template.md` into `_posts/`, rename it with the publish date, and remove sections that do not apply. The template includes optional author links, resource links, TLDR, setup, walkthrough, results, limitations, and citation sections.
-
 ## Verification
 
 Before opening a PR or publishing, run:
