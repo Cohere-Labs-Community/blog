@@ -28,6 +28,8 @@ toc:
 ---
 ```
 
+Use `authors:` when a post should show linked Hugging Face, GitHub, or personal profiles in the article byline and author cards.
+
 Add optional Distill flags only when the post uses the feature:
 
 - `bibliography: file.bib` for a per-post BibTeX file in `assets/bibliography/`.

@@ -55,6 +55,34 @@ code {
   word-wrap: break-word;
 }
 
+// Keep Rouge/Pygments tokens aligned with the Cohere palette.
+.highlight {
+  .err,
+  .gr,
+  .gt,
+  .ne,
+  .nf,
+  .nl,
+  .s,
+  .sb,
+  .sc,
+  .sd,
+  .s2,
+  .se,
+  .sh,
+  .si,
+  .sx,
+  .s1,
+  .ss {
+    color: var(--global-brand-blue-dark) !important;
+  }
+
+  .err,
+  .gd {
+    background-color: var(--global-brand-blue-tint) !important;
+  }
+}
+
 // Progress bars
 
 progress {
