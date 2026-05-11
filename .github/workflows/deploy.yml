@@ -147,6 +147,11 @@ jobs:
       contents: write
       pull-requests: write
     steps:
+      # JamesIves/github-pages-deploy-action runs local `git config` and needs a git work tree.
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
       - name: Download site artifact 📥
         uses: actions/download-artifact@v4
         with:
