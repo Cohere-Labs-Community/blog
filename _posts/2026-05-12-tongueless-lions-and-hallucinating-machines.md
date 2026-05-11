@@ -1,22 +1,18 @@
 ---
 layout: distill
-title: Tongueless Lions and Hallucinating Machines
+title: "Tongueless Lions and Hallucinating Machines"
 date: 2026-05-12 01:00:00
-description: A Hungarian cultural riddle benchmark shows that fluent multilingual models can still miss local knowledge and hallucinate culturally plausible answers.
-author: Boczka Károly
+description: "A Hungarian cultural riddle benchmark shows that fluent multilingual models can still miss local knowledge and hallucinate culturally plausible answers."
+author: "Boczka Károly"
 authors:
-  - name: Boczka Károly
-    url: https://www.linkedin.com/in/karolyboczka/
-    image: 2026-05-12-tongueless-lions-and-hallucinating-machines/image2.jpg
+  - name: "Boczka Károly"
+    url: "https://www.linkedin.com/in/karolyboczka/"
+    image: "boczka-karoly.jpg"
     bio: Boczka Károly is a former diplomat and AI researcher building multicultural benchmarks that test whether language models understand local culture, not just language.
     affiliations:
       name: Cohere Labs Community
-tags: community research
-toc:
-  - name: How I Met Cohere
-  - name: Transplant, Not Translate
-  - name: Why This Matters
-  - name: If You Feel Like Joining
+tags: community research multilingual-evaluation cultural-benchmark open-science
+toc: true
 ---
 
 The Chain Bridge, Budapest's most iconic landmark, is guarded by four lion sculptures. Their story is unmistakable to anyone who grew up in Hungary. They are said to have no tongues \- legend says the sculptor forgot them. Will an AI model recognize this story immediately? This is not a test of language proficiency, but a test of cultural knowledge.
