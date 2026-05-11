@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://cohere-labs-community.github.io/blog/pr-preview/pr-2/sitemap.xml
