@@ -30,26 +30,9 @@ docker compose run --rm -e JEKYLL_ENV=production jekyll bundle exec jekyll build
 - `assets/bibliography/` contains optional per-post BibTeX files referenced from post front matter.
 - `assets/img/` and `assets/video/` hold media used by posts and pages.
 
-## Writing Posts
+## Contributing
 
-Create posts as `YYYY-MM-DD-title.md` files under `_posts/`. A typical research post starts with:
-
-```yaml
----
-layout: distill
-title: Your Post Title
-date: 2026-05-01 09:00:00
-description: One-sentence summary for the index page and metadata.
-author: Cohere Labs Community
-tags: research evaluation
-toc:
-  - name: Overview
-  - name: Results
-bibliography: your-post.bib
----
-```
-
-Use `bibliography:` only when the post has a matching file in `assets/bibliography/`. Distill posts can also enable optional features such as `tabs: true`, `chart: true`, `mermaid: true`, `code_diff: true`, `pseudocode: true`, or `pretty_table: true` when the post actually uses them.
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for topic guidance, the post workflow, the Markdown front matter template, and supported post options such as authors, citations, plots, Mermaid diagrams, tabs, and research-writing blocks.
 
 ## Verification
 
