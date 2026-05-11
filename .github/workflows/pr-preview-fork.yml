@@ -1,9 +1,19 @@
-name: Deploy site
+# Fork PR previews: workflow file and gate jobs always run from the default branch
+# (pull_request_target). Build runs with minimal permissions; deploy publishes only the
+# uploaded _site artifact. Configure GitHub Environment "fork-pr-preview" with required
+# reviewers from @Cohere-Labs-Community/blog-owners before fork previews can deploy.
+
+name: PR preview fork
 
 on:
-  push:
+  pull_request_target:
     branches:
+      - master
       - main
+    types:
+      - opened
+      - synchronize
+      - reopened
     paths:
       - "assets/**"
       - "_sass/**"
@@ -29,86 +39,30 @@ on:
       - "!FAQ.md"
       - "!INSTALL.md"
       - "!README.md"
-  pull_request:
-    branches:
-      - main
-    paths:
-      - "assets/**"
-      - "_sass/**"
-      - "_scripts/**"
-      - "**.bib"
-      - "**.html"
-      - "**.js"
-      - "**.liquid"
-      - "**/*.md"
-      - "**.yml"
-      - "Gemfile"
-      - "Gemfile.lock"
-      - "!.github/workflows/axe.yml"
-      - "!.github/workflows/broken-links.yml"
-      - "!.github/workflows/deploy-docker-tag.yml"
-      - "!.github/workflows/deploy-image.yml"
-      - "!.github/workflows/docker-slim.yml"
-      - "!.github/workflows/lighthouse-badger.yml"
-      - "!.github/workflows/prettier.yml"
-      - "!lighthouse_results/**"
-      - "!CONTRIBUTING.md"
-      - "!CUSTOMIZE.md"
-      - "!FAQ.md"
-      - "!INSTALL.md"
-      - "!README.md"
-  workflow_dispatch:
 
 concurrency:
-  group: deploy-site-${{ github.event_name == 'pull_request' && format('pr-{0}', github.event.pull_request.number) || format('push-{0}', github.ref) }}
+  group: pr-preview-fork-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
 permissions: {}
 
 jobs:
-  deploy:
-    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+  fork-gate:
+    if: github.event.pull_request.head.repo.full_name != github.repository
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+    environment: fork-pr-preview
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v4
-      - name: Setup Ruby 💎
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: "3.3.5"
-          bundler-cache: true
-      - name: Update _config.yml ⚙️
-        uses: fjogeleit/yaml-update-action@main
-        with:
-          commitChange: false
-          valueFile: "_config.yml"
-          propertyPath: "giscus.repo"
-          value: ${{ github.repository }}
-      - name: Install and Build 🔧
-        run: |
-          export JEKYLL_ENV=production
-          bundle exec jekyll build
-      - name: Purge unused CSS 🧹
-        run: |
-          npm install -g purgecss
-          purgecss -c purgecss.config.js
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: _site
-          # Default clean would remove paths not present in _site; PR previews live under pr-preview/.
-          clean-exclude: |
-            pr-preview
+      - name: Approved for fork PR preview
+        run: echo "Environment approval granted; build may run."
 
-  pr-build:
-    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+  fork-build:
+    if: github.event.pull_request.head.repo.full_name != github.repository
+    needs: fork-gate
     runs-on: ubuntu-latest
     permissions:
       contents: read
     steps:
-      - name: Checkout PR head 🛎️
+      - name: Checkout fork PR head 🛎️
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
@@ -138,13 +92,13 @@ jobs:
       - name: Upload site artifact 📦
         uses: actions/upload-artifact@v4
         with:
-          name: pr-site-${{ github.event.pull_request.number }}
+          name: pr-site-fork-${{ github.event.pull_request.number }}
           path: _site
           retention-days: 3
 
-  pr-deploy:
-    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
-    needs: pr-build
+  fork-deploy:
+    if: github.event.pull_request.head.repo.full_name != github.repository
+    needs: fork-build
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -158,20 +112,26 @@ jobs:
       - name: Download site artifact 📥
         uses: actions/download-artifact@v4
         with:
-          name: pr-site-${{ github.event.pull_request.number }}
+          name: pr-site-fork-${{ github.event.pull_request.number }}
           path: _site
-      - name: Deploy PR preview 🚀
+      - name: Deploy fork PR preview 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: _site
           target-folder: pr-preview/pr-${{ github.event.pull_request.number }}
           branch: gh-pages
+      # github.repository_owner is typically lowercase; normalize for *.github.io hostnames.
+      - name: Pages owner (lowercase) 🔡
+        id: pages_owner
+        env:
+          REPO_OWNER: ${{ github.repository_owner }}
+        run: echo "lc=$(printf '%s' "$REPO_OWNER" | tr '[:upper:]' '[:lower:]')" >> "$GITHUB_OUTPUT"
       - name: Comment PR preview URL 💬
         uses: thollander/actions-comment-pull-request@v2
         with:
           comment_tag: pr-preview
           pr_number: ${{ github.event.pull_request.number }}
           message: |
-            **PR preview** (updates on each push to this branch):
+            **PR preview (fork)** (updates after each approved deploy):
 
-            https://${{ github.repository_owner }}.github.io/blog/pr-preview/pr-${{ github.event.pull_request.number }}/
+            https://${{ steps.pages_owner.outputs.lc }}.github.io/blog/pr-preview/pr-${{ github.event.pull_request.number }}/
