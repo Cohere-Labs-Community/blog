@@ -7,10 +7,21 @@
   {% endif %}
 {% endcapture %}
 {% assign footer_contents = footer_contents | strip %}
+{% assign footer_blurb = site.footer_text | strip %}
 
-{% if footer_contents != '' or site.newsletter.enabled %}
+{% if footer_contents != '' or site.newsletter.enabled or footer_blurb != '' %}
   {% if site.footer_fixed %}
-    <footer class="fixed-bottom" role="contentinfo">
+    <footer class="fixed-bottom site-footer" role="contentinfo">
+      {% if footer_blurb != '' %}
+        <div class="container site-footer__band mt-0">
+          <p class="site-footer__text">{{ footer_blurb }}</p>
+          <p class="site-footer__links">
+            <a href="https://cohere.com/research/open-science" rel="external nofollow noopener noreferrer" target="_blank">Open Science Community</a>
+            <span aria-hidden="true" class="site-footer__sep">&middot;</span>
+            <a href="{{ '/about/' | relative_url }}">About this blog</a>
+          </p>
+        </div>
+      {% endif %}
       {% if footer_contents != '' %}
         <div class="container mt-0">
           {{ footer_contents }}
@@ -18,9 +29,20 @@
       {% endif %}
     </footer>
   {% else %}
-    <footer class="sticky-bottom mt-5" role="contentinfo">
+    <footer class="sticky-bottom mt-5 site-footer" role="contentinfo">
       {% if site.newsletter.enabled %}
         {% include newsletter.liquid %}
+      {% endif %}
+
+      {% if footer_blurb != '' %}
+        <div class="container site-footer__band">
+          <p class="site-footer__text">{{ footer_blurb }}</p>
+          <p class="site-footer__links">
+            <a href="https://cohere.com/research/open-science" rel="external nofollow noopener noreferrer" target="_blank">Open Science Community</a>
+            <span aria-hidden="true" class="site-footer__sep">&middot;</span>
+            <a href="{{ '/about/' | relative_url }}">About this blog</a>
+          </p>
+        </div>
       {% endif %}
 
       {% if footer_contents != '' %}

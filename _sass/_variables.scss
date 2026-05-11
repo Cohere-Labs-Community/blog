@@ -18,8 +18,8 @@ $green-color-lime: #b7d12a !default;
 $green-color-dark: #009f06 !default;
 $green-color-light: #ddffdd !default;
 $green-color-bright: #11d68b !default;
-$purple-color: #4c6ee6 !default;
-$light-purple-color: color.adjust($purple-color, $lightness: 25%);
+$purple-color: #5c49c4 !default;
+$light-purple-color: color.adjust($purple-color, $lightness: 28%);
 $pink-color: #f92080 !default;
 $pink-color-light: #ffdddd !default;
 $yellow-color: #efcc00 !default;
@@ -45,9 +45,17 @@ $cohere-green: #5bbf8a !default;
 $cohere-lime: #ccf61c !default;
 $cohere-coral: #dd5132 !default;
 
+// Cohere Labs Community purple (aligned with community mark / open science)
+$cohere-community-purple-700: #3d2f7a !default;
+$cohere-community-purple-600: #4a3a9e !default;
+$cohere-community-purple-500: #5c49c4 !default;
+$cohere-community-purple-300: #9d8ef0 !default;
+$cohere-community-purple-100: #e8e4fb !default;
+$cohere-community-purple-50: #f5f3ff !default;
+
 // Theme colors
 
-$code-bg-color-light: rgba($cohere-blue-500, 0.08);
+$code-bg-color-light: rgba($cohere-community-purple-500, 0.09);
 $code-bg-color-dark: #101b2c !default;
 
 // Font awesome location

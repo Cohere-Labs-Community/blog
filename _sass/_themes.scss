@@ -6,26 +6,39 @@
 
 :root {
   color-scheme: light;
-  --global-bg-color: #{v.$white-color};
+  --global-bg-color: #{v.$cohere-community-purple-50};
   --global-code-bg-color: #{v.$code-bg-color-light};
   --global-text-color: #{v.$cohere-ink};
   --global-text-color-light: #{v.$grey-color};
-  --global-theme-color: #{v.$cohere-blue-500};
-  --global-hover-color: #{v.$cohere-blue-700};
+  --global-theme-color: #{v.$cohere-community-purple-500};
+  --global-hover-color: #{v.$cohere-community-purple-700};
   --global-hover-text-color: #{v.$white-color};
   --global-footer-bg-color: #{v.$cohere-navy};
-  --global-footer-text-color: #{v.$cohere-blue-100};
+  --global-footer-text-color: #{v.$cohere-community-purple-100};
   --global-footer-link-color: #{v.$white-color};
   --global-distill-app-color: #{v.$grey-color};
-  --global-divider-color: rgba(0, 0, 0, 0.1);
+  --global-divider-color: rgba(92, 73, 196, 0.12);
   --global-card-bg-color: #{v.$white-color};
   --global-highlight-color: #{v.$cohere-coral};
   --global-brand-navy: #{v.$cohere-navy};
-  --global-brand-blue: #{v.$cohere-blue-500};
-  --global-brand-blue-dark: #{v.$cohere-blue-700};
-  --global-brand-blue-light: #{v.$cohere-blue-100};
-  --global-brand-blue-tint: #{v.$cohere-blue-50};
+  /* Legacy names: values now follow Labs Community purple */
+  --global-brand-blue: #{v.$cohere-community-purple-500};
+  --global-brand-blue-dark: #{v.$cohere-community-purple-700};
+  --global-brand-blue-light: #{v.$cohere-community-purple-100};
+  --global-brand-blue-tint: #{v.$cohere-community-purple-50};
+  --global-brand-purple: #{v.$cohere-community-purple-500};
+  --global-brand-purple-dark: #{v.$cohere-community-purple-700};
+  --global-brand-purple-light: #{v.$cohere-community-purple-100};
+  --global-brand-purple-tint: #{v.$cohere-community-purple-50};
   --global-brand-mushroom: #{v.$cohere-mushroom};
+  --global-hero-surface: linear-gradient(
+    135deg,
+    #{v.$cohere-community-purple-50} 0%,
+    #{color.mix(v.$white-color, v.$cohere-community-purple-100, 55%)} 45%,
+    #{v.$white-color} 100%
+  );
+  --global-hero-border: rgba(92, 73, 196, 0.14);
+  --global-navbar-scrim: rgba(245, 243, 255, 0.82);
   --global-back-to-top-bg-color: rgba(
     #{color.channel(v.$black-color, "red", v.$space: rgb)},
     #{color.channel(v.$black-color, "green", v.$space: rgb)},
@@ -85,19 +98,28 @@ html[data-theme="dark"] {
   --global-bg-color: #{v.$cohere-navy};
   --global-code-bg-color: #{v.$code-bg-color-dark};
   --global-text-color: #{v.$cohere-mushroom};
-  --global-text-color-light: #{v.$cohere-blue-100};
-  --global-theme-color: #{v.$cohere-blue-300};
-  --global-hover-color: #{v.$cohere-blue-100};
+  --global-text-color-light: #{v.$cohere-community-purple-300};
+  --global-theme-color: #{v.$cohere-community-purple-300};
+  --global-hover-color: #{v.$cohere-community-purple-100};
   --global-hover-text-color: #{v.$cohere-navy};
   --global-footer-bg-color: #030913;
-  --global-footer-text-color: #{v.$cohere-blue-100};
+  --global-footer-text-color: #{v.$cohere-community-purple-100};
   --global-footer-link-color: #{v.$white-color};
-  --global-distill-app-color: #{v.$cohere-blue-100};
-  --global-divider-color: rgba(203, 239, 255, 0.18);
-  --global-card-bg-color: #101b2c;
-  --global-highlight-color: #{v.$cohere-blue-100};
-  --global-brand-blue-dark: #{v.$cohere-blue-300};
-  --global-brand-blue-tint: rgba(143, 166, 249, 0.16);
+  --global-distill-app-color: #{v.$cohere-community-purple-300};
+  --global-divider-color: rgba(157, 142, 240, 0.22);
+  --global-card-bg-color: #151a2e;
+  --global-highlight-color: #{v.$cohere-community-purple-100};
+  --global-brand-blue: #{v.$cohere-community-purple-300};
+  --global-brand-blue-dark: #{v.$cohere-community-purple-100};
+  --global-brand-blue-light: #{v.$cohere-community-purple-100};
+  --global-brand-blue-tint: rgba(157, 142, 240, 0.14);
+  --global-brand-purple: #{v.$cohere-community-purple-300};
+  --global-brand-purple-dark: #{v.$cohere-community-purple-100};
+  --global-brand-purple-light: #{v.$cohere-community-purple-100};
+  --global-brand-purple-tint: rgba(157, 142, 240, 0.12);
+  --global-hero-surface: linear-gradient(135deg, #0c1224 0%, #{color.mix(#151a2e, v.$cohere-community-purple-700, 70%)} 55%, #{v.$cohere-navy} 100%);
+  --global-hero-border: rgba(157, 142, 240, 0.2);
+  --global-navbar-scrim: rgba(6, 19, 36, 0.88);
   --global-back-to-top-bg-color: rgba(
     #{color.channel(v.$white-color, "red", v.$space: rgb)},
     #{color.channel(v.$white-color, "green", v.$space: rgb)},

@@ -25,7 +25,9 @@ layout: default
               {% if document.redirect == blank %}
                 <a class="post-link" href="{{ document.url | relative_url }}">{{ document.title }}</a>
               {% elsif document.redirect contains '://' %}
-                <a class="post-link" href="{{ document.redirect }}" target="_blank">{{ document.title }}</a>
+                <a class="post-link" href="{{ document.redirect }}" rel="external nofollow noopener noreferrer" target="_blank">
+                  {{- document.title -}}
+                </a>
               {% else %}
                 <a class="post-link" href="{{ document.redirect | relative_url }}">{{ document.title }}</a>
               {% endif %}

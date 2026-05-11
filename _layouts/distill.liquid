@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="{{ site.lang }}">
   <head>
     {% include head.liquid %}
 
@@ -53,11 +53,12 @@
   </d-front-matter>
 
   <body class="{% if site.navbar_fixed %}fixed-top-nav{% endif %} {% unless site.footer_fixed %}sticky-bottom-footer{% endunless %}">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <!-- Header -->
     {% include header.liquid %}
 
     <!-- Content -->
-    <div class="post distill">
+    <div id="main-content" class="post distill" role="main" tabindex="-1">
       <d-title>
         <h1>{{ page.title }}</h1>
         <p>{{ page.description }}</p>

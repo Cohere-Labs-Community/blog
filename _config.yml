@@ -11,7 +11,7 @@ contact_note: >
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   Research notes, technical essays, and practical perspectives on AI from the Cohere Labs Community.
 footer_text: >
-  Published by the Cohere Labs Community.
+  Exploring the unknown, together.
 keywords: cohere, cohere labs, ai research, machine learning, research blog, large language models, natural language processing, science, data # add your own keywords or leave empty
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: favicon.png # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
@@ -37,9 +37,9 @@ max_width: 930px
 # -----------------------------------------------------------------------------
 # Display links to the page with a preview object on social media.
 # see https://schema.org/docs/faq.html for more information
-serve_og_meta: false # Include Open Graph meta tags in the HTML head
+serve_og_meta: true # Include Open Graph meta tags in the HTML head
 serve_schema_org: false # Include Schema.org in the HTML head
-og_image: # The site-wide (default for all links) Open Graph preview image
+og_image: /assets/img/brand/cohere-labs-community-mark.png # Default social preview (absolute URL built in metadata)
 
 # -----------------------------------------------------------------------------
 # Analytics and search engine verification

@@ -4,6 +4,26 @@
 
 @use "variables" as v;
 
+/* Keyboard / screen reader: jump past repeated chrome */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  z-index: 9999;
+  padding: 0.65rem 1rem;
+  font-weight: 600;
+  color: var(--global-hover-text-color);
+  background-color: var(--global-theme-color);
+  border-radius: 0 0 0.35rem 0;
+  text-decoration: none !important;
+
+  &:focus {
+    left: 0;
+    top: 0;
+    outline: 2px solid var(--global-hover-color);
+    outline-offset: 2px;
+  }
+}
+
 body {
   padding-bottom: 70px;
   color: var(--global-text-color);

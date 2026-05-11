@@ -33,3 +33,58 @@ footer.sticky-bottom {
     text-align: center;
   }
 }
+
+.site-footer__band {
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.site-footer__text {
+  margin: 0 auto 0.65rem;
+  max-width: 36rem;
+  color: var(--global-text-color-light);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.site-footer__links {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+
+  a {
+    color: var(--global-theme-color);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--global-hover-color);
+      text-decoration: underline;
+    }
+  }
+}
+
+.site-footer__sep {
+  margin: 0 0.4rem;
+  color: var(--global-text-color-light);
+}
+
+footer.fixed-bottom .site-footer__band {
+  padding-top: 10px;
+  padding-bottom: 6px;
+
+  .site-footer__text {
+    color: var(--global-footer-text-color);
+  }
+
+  .site-footer__links a {
+    color: var(--global-footer-link-color);
+
+    &:hover {
+      color: var(--global-theme-color);
+    }
+  }
+
+  .site-footer__sep {
+    color: var(--global-footer-text-color);
+  }
+}

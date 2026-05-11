@@ -21,6 +21,16 @@ d-article d-byline a {
 d-title {
   padding-top: 3rem !important;
   padding-bottom: 1rem !important;
+
+  h1 {
+    letter-spacing: -0.02em;
+  }
+
+  > p {
+    color: var(--global-text-color-light) !important;
+    font-size: 1.05rem;
+    line-height: 1.5;
+  }
 }
 
 @media (min-width: 768px) {
@@ -72,7 +82,7 @@ d-article {
   a {
     color: var(--global-theme-color) !important;
     &:hover {
-      color: var(--global-theme-color) !important;
+      color: var(--global-hover-color) !important;
       text-decoration: underline;
     }
   }

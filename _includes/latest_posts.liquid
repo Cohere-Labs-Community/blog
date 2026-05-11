@@ -21,7 +21,7 @@
               {% if item.redirect == blank %}
                 <a class="news-title" href="{{ item.url | relative_url }}">{{ item.title }}</a>
               {% elsif item.redirect contains '://' %}
-                <a class="news-title" href="{{ item.redirect }}" target="_blank">{{ item.title }}</a>
+                <a class="news-title" href="{{ item.redirect }}" rel="external nofollow noopener noreferrer" target="_blank">{{ item.title }}</a>
                 <svg width="2rem" height="2rem" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9"

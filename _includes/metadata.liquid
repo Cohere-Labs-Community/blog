@@ -19,6 +19,10 @@
 {% if page.url == '/' or page.url == '/index.html' %}
   {% assign is_home_page = true %}
 {% endif %}
+{% assign is_blog_index = false %}
+{% if page.path == '_pages/blog.md' %}
+  {% assign is_blog_index = true %}
+{% endif %}
 
 <!-- Standard metadata -->
 <meta charset="utf-8">
@@ -53,24 +57,59 @@
   {% assign is_blog_post = true %}
 {% endif %}
 
+{% comment %} Share title for Open Graph / Twitter (keep in sync with visible page intent){% endcomment %}
+{% capture share_title %}
+{% if is_blog_post %}{{ page.title }}
+{% elsif is_home_page or is_blog_index %}{{ site.blog_name | default: site.title }}
+{% elsif page.title != blank and page.title != 'blank' %}{{ page.title }}
+{% else %}{{ site.title }}{% endif %}
+{% endcapture %}
+{% assign share_title = share_title | strip %}
+
+{% if is_home_page or is_blog_index %}
+  {% assign og_share_title = site.title %}
+{% else %}
+  {% assign og_share_title = share_title | append: ' | ' | append: site.title %}
+{% endif %}
+
 {% if site.serve_og_meta %}
   <!-- OpenGraph -->
-  <meta property="og:site_name" content="{{ title }}">
+  <meta property="og:site_name" content="{{ site.title }}">
   <meta property="og:type" content="{% if is_blog_post %}article{% else %}website{% endif %}">
-  <meta property="og:title" content="{% if page.title %}{{ title }} | {{ page.title }}{% else %}{{ title }}{% endif %}">
-  <meta property="og:url" content="{{ page.url | prepend: site.baseurl | prepend: site.url | remove_first: 'index.html' }}">
-  <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-  {% if page.og_image or site.og_image %}
-    <meta property="og:image" content="{% if page.og_image %}{{ page.og_image }}{% else %}{{ site.og_image }}{% endif %}">
+  <meta property="og:title" content="{{ og_share_title | strip }}">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta
+    property="og:description"
+    content="{% if page.description %}{{ page.description | strip }}{% else %}{{ site.description | strip }}{% endif %}"
+  >
+  {% assign og_image_src = page.og_image | default: site.og_image %}
+  {% if og_image_src != blank %}
+    {% if og_image_src contains '://' %}
+      <meta property="og:image" content="{{ og_image_src }}">
+    {% else %}
+      {% assign og_image_path = og_image_src | remove_first: '/' %}
+      <meta property="og:image" content="{{ site.url }}{{ site.baseurl }}/{{ og_image_path }}">
+    {% endif %}
   {% endif %}
   <meta property="og:locale" content="{{ site.lang }}">
+  {% if is_blog_post %}
+    <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+  {% endif %}
 
   <!-- Twitter card -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ title }}{% endif %}">
-  <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-  {% if page.og_image or site.og_image %}
-    <meta name="twitter:image" content="{% if page.og_image %}{{ page.og_image }}{% else %}{{ site.og_image }}{% endif %}">
+  <meta name="twitter:title" content="{{ og_share_title | strip }}">
+  <meta
+    name="twitter:description"
+    content="{% if page.description %}{{ page.description | strip }}{% else %}{{ site.description | strip }}{% endif %}"
+  >
+  {% if og_image_src != blank %}
+    {% if og_image_src contains '://' %}
+      <meta name="twitter:image" content="{{ og_image_src }}">
+    {% else %}
+      {% assign og_image_path = og_image_src | remove_first: '/' %}
+      <meta name="twitter:image" content="{{ site.url }}{{ site.baseurl }}/{{ og_image_path }}">
+    {% endif %}
   {% endif %}
   {% if site.x_username %}
     <meta name="twitter:site" content="@{{ site.x_username }}">
