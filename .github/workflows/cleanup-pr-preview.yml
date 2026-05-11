@@ -1,0 +1,42 @@
+name: Cleanup PR preview
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - master
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  remove-preview-folder:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout gh-pages 🛎️
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          persist-credentials: true
+      - name: Remove preview directory 🧹
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
+          TARGET="pr-preview/pr-${PR_NUMBER}"
+          if [ ! -d "$TARGET" ]; then
+            echo "No preview folder at $TARGET; nothing to remove."
+            exit 0
+          fi
+          rm -rf "$TARGET"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No staged changes."
+            exit 0
+          fi
+          git commit -m "chore: remove PR preview for #${PR_NUMBER}"
+          git push origin gh-pages
