@@ -12,6 +12,12 @@ authors:
     affiliations:
       name: Cohere Labs Community
 tags: community research multilingual-evaluation cultural-benchmark open-science
+hero:
+  type: contour
+  motion: auto
+  seed: cohere-labs-community-blog
+  intensity: 0.72
+  og_image: /assets/img/brand/cohere-labs-community-lockup.svg
 toc: true
 ---
 
