@@ -59,7 +59,25 @@
 
     <!-- Content -->
     <div id="main-content" class="post distill" role="main" tabindex="-1">
-      <d-title>
+      {% assign hero = page.hero %}
+      {% assign hero_type = hero.type | default: 'contour' %}
+      {% assign hero_motion = hero.motion | default: 'hover' %}
+      {% assign hero_seed = hero.seed | default: page.slug | default: page.title %}
+      {% assign hero_intensity = hero.intensity | default: 0.65 %}
+      <d-title class="{% if hero %}has-post-hero{% endif %}">
+        {% if hero %}
+          <div
+            class="post-hero post-hero--{{ hero_type | slugify }}"
+            data-post-hero
+            data-hero-type="{{ hero_type | escape }}"
+            data-hero-motion="{{ hero_motion | escape }}"
+            data-hero-seed="{{ hero_seed | escape }}"
+            data-hero-intensity="{{ hero_intensity }}"
+            aria-hidden="true"
+          >
+            <canvas class="post-hero__canvas"></canvas>
+          </div>
+        {% endif %}
         <h1>{{ page.title }}</h1>
         <p>{{ page.description }}</p>
       </d-title>

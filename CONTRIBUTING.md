@@ -145,6 +145,21 @@ Put images under `assets/img/` and videos under `assets/video/`. Use alt text an
 
 Use wider layout classes only for content that needs more room, such as large diagrams, wide tables, or interactive plots.
 
+### Animated Headers
+
+Posts can opt into an abstract generated header with `hero:` front matter:
+
+```yaml
+hero:
+  type: contour
+  motion: hover
+  seed: my-post
+  intensity: 0.65
+  og_image: /assets/img/brand/cohere-labs-community-lockup.svg
+```
+
+Supported `type` values are `contour`, `halftone`, and `waves`. Use `motion: hover` for pointer-reactive movement, `motion: auto` for subtle ambient movement, or `motion: none` for a static generated frame. Always provide `og_image` because social previews cannot render JavaScript animations.
+
 ### Plots and Charts
 
 Interactive plots are supported through per-post chart flags:

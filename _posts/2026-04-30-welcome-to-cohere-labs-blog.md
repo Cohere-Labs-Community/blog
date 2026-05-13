@@ -14,6 +14,12 @@ authors:
     affiliations:
       name: Cohere Labs Community
 tags: community research writing reproducibility visualization
+hero:
+  type: waves
+  motion: auto
+  seed: cohere-labs-community-blog
+  intensity: 0.72
+  og_image: /assets/img/brand/cohere-labs-community-lockup.svg
 toc:
   - name: What To Write
   - name: Contributor Workflow
@@ -21,6 +27,7 @@ toc:
   - name: Recommended Structure
   - name: Front Matter
   - name: Distill Features
+  - name: Animated Headers
   - name: Research Writing Patterns
   - name: Markdown Basics
   - name: Code Blocks
@@ -161,6 +168,12 @@ chart:
 code_diff: true
 pseudocode: true
 pretty_table: true
+hero:
+  type: contour
+  motion: hover
+  seed: my-post
+  intensity: 0.65
+  og_image: /assets/img/brand/cohere-labs-community-lockup.svg
 bibliography: my-post.bib
 ```
 
@@ -169,6 +182,12 @@ Only enable features you use. This keeps pages fast and reviews focused.
 ## Distill Features
 
 Distill posts use `layout: distill`, which gives articles a research-paper style title block, byline, table of contents, citation handling, footnotes, and wide layout helpers.
+
+## Animated Headers
+
+Add an optional `hero:` block when a post benefits from an abstract animated header. The supported types are `contour`, `halftone`, and `waves`. Set `motion: hover` for pointer-reactive movement, `motion: auto` for subtle ambient animation, or `motion: none` for a static generated frame. The `seed` makes the generated art repeatable, and `intensity` accepts a value from `0.1` to `1`.
+
+Always include `og_image` when using an animated header. Social previews cannot run JavaScript, so the image should point to a static SVG or PNG that represents the post well.
 
 Use Distill's native footnotes for short asides.<d-footnote>Footnotes are rendered in the appendix and are available inline on hover.</d-footnote> For longer optional context, use a details box:
 

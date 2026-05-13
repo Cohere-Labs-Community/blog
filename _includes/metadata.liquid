@@ -82,7 +82,11 @@
     property="og:description"
     content="{% if page.description %}{{ page.description | strip }}{% else %}{{ site.description | strip }}{% endif %}"
   >
-  {% assign og_image_src = page.og_image | default: site.og_image %}
+  {% assign hero_og_image = null %}
+  {% if page.hero and page.hero.og_image %}
+    {% assign hero_og_image = page.hero.og_image %}
+  {% endif %}
+  {% assign og_image_src = page.og_image | default: hero_og_image | default: site.og_image %}
   {% if og_image_src != blank %}
     {% if og_image_src contains '://' %}
       <meta property="og:image" content="{{ og_image_src }}">
