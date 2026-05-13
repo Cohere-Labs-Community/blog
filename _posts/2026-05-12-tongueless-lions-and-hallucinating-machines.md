@@ -3,12 +3,12 @@ layout: distill
 title: "Tongueless Lions and Hallucinating Machines"
 date: 2026-05-12 01:00:00
 description: "A Hungarian cultural riddle benchmark shows that fluent multilingual models can still miss local knowledge and hallucinate culturally plausible answers."
-author: "Boczka Károly"
+author: "Károly Boczka"
 authors:
-  - name: "Boczka Károly"
+  - name: "Károly Boczka"
     url: "https://www.linkedin.com/in/karolyboczka/"
     image: "boczka-karoly.jpg"
-    bio: Boczka Károly is a former diplomat and AI researcher building multicultural benchmarks that test whether language models understand local culture, not just language.
+    bio: Károly Boczka is a former diplomat who traded a 25-year international career for AI research, building multicultural benchmarks that test whether language models understand local culture, not just language.
     affiliations:
       name: Cohere Labs Community
 tags: community research multilingual-evaluation cultural-benchmark open-science
