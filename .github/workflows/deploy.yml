@@ -130,7 +130,7 @@ jobs:
           PR_BASEURL: /blog/pr-preview/pr-${{ github.event.pull_request.number }}
         run: |
           export JEKYLL_ENV=production
-          bundle exec jekyll build --baseurl "$PR_BASEURL"
+          bundle exec jekyll build --baseurl "$PR_BASEURL" --future
       - name: Purge unused CSS 🧹
         run: |
           npm install -g purgecss
@@ -166,6 +166,12 @@ jobs:
           folder: _site
           target-folder: pr-preview/pr-${{ github.event.pull_request.number }}
           branch: gh-pages
+      # github.repository_owner can be mixed-case for orgs; *.github.io hostnames must be lowercase.
+      - name: Pages owner (lowercase) 🔡
+        id: pages_owner
+        env:
+          REPO_OWNER: ${{ github.repository_owner }}
+        run: echo "lc=$(printf '%s' "$REPO_OWNER" | tr '[:upper:]' '[:lower:]')" >> "$GITHUB_OUTPUT"
       - name: Comment PR preview URL 💬
         uses: thollander/actions-comment-pull-request@v2
         with:
@@ -174,4 +180,4 @@ jobs:
           message: |
             **PR preview** (updates on each push to this branch):
 
-            https://${{ github.repository_owner }}.github.io/blog/pr-preview/pr-${{ github.event.pull_request.number }}/
+            https://${{ steps.pages_owner.outputs.lc }}.github.io/blog/pr-preview/pr-${{ github.event.pull_request.number }}/
