@@ -18,7 +18,7 @@ hero:
   seed: cohere-labs-community-blog
   intensity: 0.72
   og_image: /assets/img/brand/cohere-labs-community-lockup.svg
-toc: true
+toc: false
 bibliography: 2026-05-25-mix-fine-tune-break.bib
 ---
 
