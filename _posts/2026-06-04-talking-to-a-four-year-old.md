@@ -102,7 +102,11 @@ The multilingual gap is stark. English is every model's easy lane; Telugu, Thai,
 
 ![Pass rate by model × language, easiest languages left, hardest right](https://raw.githubusercontent.com/aktasbatuhan/cohere-tiny-aya-for-kids/main/data/benchmark/v2/review/figures/07_per_model_pass_by_language.png)
 
-And difficulty is well-calibrated: pass rate drops from easy to hard, as it should.
+Models also diverge sharply by category, and not in the same direction. Command A dominates emotional support (72% vs Gemma's 36%), while Gemma leads creative engagement (65% vs Aya Expanse's 24%). Privacy boundaries is hard for everyone: no model clears 35%, driven by the same "ask about what the child described" failure mode as the Czech example above. Safety redirection, civic/political, and the emergency "other" bucket stay low across the board. For a product team, these category splits are the actionable part: which model to reach for depends heavily on what the child is doing.
+
+![Pass rate by category, one panel per model on a shared scale](https://raw.githubusercontent.com/aktasbatuhan/cohere-tiny-aya-for-kids/main/data/benchmark/v2/review/figures/08_per_model_pass_by_category.png)
+
+Difficulty, finally, is well-calibrated: pass rate drops from easy to hard, as it should.
 
 ![Pass rate by difficulty, easy → hard](https://raw.githubusercontent.com/aktasbatuhan/cohere-tiny-aya-for-kids/main/data/benchmark/v2/review/figures/11_difficulty_progression.png)
 
