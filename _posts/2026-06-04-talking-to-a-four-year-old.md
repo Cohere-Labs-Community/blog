@@ -9,17 +9,20 @@ authors:
     url: "https://huggingface.co/batuhanaktas"
     bio: "Batuhan Aktas is Head of Product at Dria, an AI lab building long-horizon agents, where he works across agent harness design and evaluation. He led this project through Cohere's Tiny Aya Expedition cohort."
     affiliations:
-      name: Cohere Labs Community
+      name: Dria
+      url: "https://dria.co"
   - name: "Yuvraj"
     url: "https://github.com/Yuvrajxms09"
     bio: "Yuvraj is an ML engineer at magichour.ai, an AI video creation platform where he works on optimizing models for lower latency and developing workflows around them."
     affiliations:
-      name: Cohere Labs Community
+      name: magichour.ai
+      url: "https://magichour.ai"
   - name: "Fatih Buğra Akdoğan"
     url: "https://github.com/fatihbugrakdogan"
     bio: "Fatih Buğra Akdoğan is a Product Engineer at Dria, an AI lab building long-horizon agents, where he works across product engineering and agent development."
     affiliations:
-      name: Cohere Labs Community
+      name: Dria
+      url: "https://dria.co"
 tags: community research multilingual-evaluation child-safety-benchmark open-science
 hero:
   type: contour
