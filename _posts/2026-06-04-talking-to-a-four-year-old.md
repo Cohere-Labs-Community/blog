@@ -7,17 +7,17 @@ author: "Batuhan Aktas"
 authors:
   - name: "Batuhan Aktas"
     url: "https://huggingface.co/batuhanaktas"
-    bio: "Batuhan Aktas is Head of Product at Dria, a London-based AI lab building long-horizon coding agents and distributed inference infrastructure, where he works across agent harness design, context engineering, and evaluation. He founded Octo, a voice-first AI companion for children whose anonymized conversations seed this benchmark, and maintains open-source projects including the 600-star mem-agent-mcp. He led this work through Cohere's Tiny Aya Expedition cohort."
+    bio: "Batuhan Aktas is Head of Product at Dria, an AI lab building long-horizon agents, where he works across agent harness design and evaluation. He led this project through Cohere's Tiny Aya Expedition cohort."
     affiliations:
       name: Cohere Labs Community
   - name: "Yuvraj"
     url: "https://github.com/Yuvrajxms09"
-    bio: "Yuvraj is a machine-learning engineer focused on LLM inference and distributed systems, with open-source projects spanning distributed inference on Apple Silicon clusters (dnet) and SOTA model deployment on Modal. He built the model-serving and inference infrastructure behind this benchmark."
+    bio: "Yuvraj is an ML engineer at magichour.ai, an AI video creation platform where he works on optimizing models for lower latency and developing workflows around them."
     affiliations:
       name: Cohere Labs Community
-  - name: "Fatih Buğra Kdoğan"
+  - name: "Fatih Buğra Akdoğan"
     url: "https://github.com/fatihbugrakdogan"
-    bio: "Fatih Buğra Kdoğan is an AI Product Engineer at FirstBatch in Istanbul, specializing in scalable AI products, LLM inference pipelines, and evaluation frameworks. He focuses on turning AI research into production software and contributed to the benchmarking and evaluation tooling for this project."
+    bio: "Fatih Buğra Akdoğan is a Product Engineer at Dria, an AI lab building long-horizon agents, where he works across product engineering and agent development."
     affiliations:
       name: Cohere Labs Community
 tags: community research multilingual-evaluation child-safety-benchmark open-science
