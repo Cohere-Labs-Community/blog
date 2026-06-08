@@ -63,7 +63,7 @@ jobs:
       contents: read
     steps:
       - name: Checkout fork PR head 🛎️
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           persist-credentials: false
@@ -90,7 +90,7 @@ jobs:
           npm install -g purgecss
           purgecss -c purgecss.config.js
       - name: Upload site artifact 📦
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: pr-site-fork-${{ github.event.pull_request.number }}
           path: _site
@@ -106,11 +106,11 @@ jobs:
     steps:
       # JamesIves/github-pages-deploy-action runs local `git config` and needs a git work tree.
       - name: Checkout 🛎️
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 1
       - name: Download site artifact 📥
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: pr-site-fork-${{ github.event.pull_request.number }}
           path: _site
