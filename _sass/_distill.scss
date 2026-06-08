@@ -236,6 +236,25 @@ d-article {
     overflow-x: auto;
   }
 
+  figure.post-figure {
+    grid-column: text;
+    justify-self: stretch;
+    max-width: 100%;
+    width: 100%;
+
+    picture {
+      display: block;
+      width: 100%;
+    }
+
+    img {
+      display: block;
+      height: auto;
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+
   aside,
   .l-gutter {
     color: var(--global-text-color-light);
