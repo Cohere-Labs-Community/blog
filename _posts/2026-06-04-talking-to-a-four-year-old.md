@@ -80,7 +80,7 @@ LLM-as-judge is now the de-facto method for open-ended generation, and the liter
 
 A single judge prompt, in English regardless of item language, returns strict JSON (3 gates, 4 graded dims, an overall pass, and a one-line reason). Budget and quota constraints meant only one judge, **DeepSeek V4 Flash**, ran the full set of 9,248 (item × model) responses; four others (Gemini 3.1 Pro, GPT-5.4, Xiaomi Mimo, Cohere Command-A Reasoning) ran stratified, language-balanced subsets as validators.
 
-![Inter-judge agreement, Cohen's κ on overall_pass, a lower-triangle shaded table](https://raw.githubusercontent.com/aktasbatuhan/cohere-tiny-aya-for-kids/main/data/benchmark/v2/review/figures/01_pairwise_kappa_heatmap.png)
+{% include figure.liquid path="assets/img/2026-06-04-talking-to-a-four-year-old/01_pairwise_kappa_heatmap.png" alt="Lower-triangle heatmap of pairwise Cohen's kappa between the five judges" caption="Inter-judge agreement on overall_pass. Four judges cluster at substantial agreement (κ ≥ 0.66); GPT-5.4 is the systematic outlier." %}
 
 Two findings stand out. **Four judges form a substantial-agreement cluster**: DeepSeek, Cohere Reasoning, Gemini Pro, and Mimo all pairwise agree at κ ≥ 0.66 (DeepSeek/Gemini at **0.71**), with graded-score correlations of r ≥ 0.66. And **GPT-5.4 is a systematic outlier**: it passes only 16% of responses where every other judge sits at 33–39%, pulling every pair it's in down ~0.2 κ. It is _stricter, not noisier_: it agrees on the **ranking** of responses (Pearson r = 0.84) but applies a different pass/fail threshold. The lesson for the field: _frontier proprietary models are not interchangeable as evaluators._ We publish the DeepSeek leaderboard precisely because it is cheap, parses cleanly 99.6% of the time, and agrees substantially with three of the four other judges.
 
@@ -99,19 +99,19 @@ The top three are within ~5 points, and none is _good_ in absolute terms: a 38% 
 
 The benchmark genuinely discriminates: only **7.9% of items pass for all four models, while 41.6% fail for all four.**
 
-![How many of the four models pass each item, a labeled stacked bar](https://raw.githubusercontent.com/aktasbatuhan/cohere-tiny-aya-for-kids/main/data/benchmark/v2/review/figures/10_item_agreement_donut.png)
+{% include figure.liquid path="assets/img/2026-06-04-talking-to-a-four-year-old/10_item_agreement_donut.png" alt="Stacked bar showing how many of the four models pass each item" caption="Only 7.9% of items pass for all four models, while 41.6% fail for all four." %}
 
 The multilingual gap is stark. English is every model's easy lane; Telugu, Thai, and Swahili sit at 10–25% even for the strong models, and near zero for TinyAya.
 
-![Pass rate by model × language, easiest languages left, hardest right](https://raw.githubusercontent.com/aktasbatuhan/cohere-tiny-aya-for-kids/main/data/benchmark/v2/review/figures/07_per_model_pass_by_language.png)
+{% include figure.liquid path="assets/img/2026-06-04-talking-to-a-four-year-old/07_per_model_pass_by_language.png" alt="Heatmap of pass rate per model and language, sorted easiest to hardest" caption="Pass rate by model and language. English is every model's easy lane; Telugu, Thai, and Swahili are hardest." %}
 
 Models also diverge sharply by category, and not in the same direction. Command A dominates emotional support (72% vs Gemma's 36%), while Gemma leads creative engagement (65% vs Aya Expanse's 24%). Privacy boundaries is hard for everyone: no model clears 35%, driven by the same "ask about what the child described" failure mode as the Czech example above. Safety redirection, civic/political, and the emergency "other" bucket stay low across the board. For a product team, these category splits are the actionable part: which model to reach for depends heavily on what the child is doing.
 
-![Pass rate by category, one panel per model on a shared scale](https://raw.githubusercontent.com/aktasbatuhan/cohere-tiny-aya-for-kids/main/data/benchmark/v2/review/figures/08_per_model_pass_by_category.png)
+{% include figure.liquid path="assets/img/2026-06-04-talking-to-a-four-year-old/08_per_model_pass_by_category.png" alt="Small-multiple bar charts of pass rate by category, one panel per model" caption="Pass rate by category, one panel per model on a shared scale. Model strengths differ sharply by category." %}
 
 Difficulty, finally, is well-calibrated: pass rate drops from easy to hard, as it should.
 
-![Pass rate by difficulty, easy → hard](https://raw.githubusercontent.com/aktasbatuhan/cohere-tiny-aya-for-kids/main/data/benchmark/v2/review/figures/11_difficulty_progression.png)
+{% include figure.liquid path="assets/img/2026-06-04-talking-to-a-four-year-old/11_difficulty_progression.png" alt="Slopegraph of pass rate by difficulty from easy to hard for each model" caption="Pass rate drops from easy to hard, as a well-calibrated benchmark should." %}
 
 The full per-language, per-category, and per-difficulty breakdowns are in the dataset's [`review/balanced_review.csv`](https://huggingface.co/datasets/batuhanaktas/kids-multilingual-benchmark/blob/main/review/balanced_review.csv) and the agreement-matrix figures.
 
