@@ -33,17 +33,17 @@ hero:
 toc: true
 ---
 
-> **TL;DR:** **TinyAya v2** is a multilingual benchmark of **2,312 child–AI conversational prompts across 23 languages**. We evaluated four production language models against it and validated the LLM-as-judge pipeline with **five independent judges** (Cohen's κ up to 0.71, _substantial agreement_). Dataset, model responses, judge scores, and the iOS companion app are all released openly.
+> **TL;DR:** The **Kids Multilingual Benchmark** is a set of **2,312 child–AI conversational prompts across 23 languages**. We evaluated four production language models against it and validated the LLM-as-judge pipeline with **five independent judges** (Cohen's κ up to 0.71, _substantial agreement_). Dataset, model responses, judge scores, and the iOS companion app are all released openly.
 >
-> 📦 Dataset: [`batuhanaktas/kids-multilingual-benchmark`](https://huggingface.co/datasets/batuhanaktas/kids-multilingual-benchmark) · 💻 Code: [`aktasbatuhan/cohere-tiny-aya-for-kids`](https://github.com/aktasbatuhan/cohere-tiny-aya-for-kids) · 📱 TinyAya, offline voice companion for ages 4–8
+> 📦 Dataset: [`batuhanaktas/kids-multilingual-benchmark`](https://huggingface.co/datasets/batuhanaktas/kids-multilingual-benchmark) · 💻 Code: [`aktasbatuhan/cohere-tiny-aya-for-kids`](https://github.com/aktasbatuhan/cohere-tiny-aya-for-kids) · 📱 An on-device kids companion for ages 4–8 (iOS)
 
 ## Why a benchmark for kids?
 
 A four-year-old asked Alexa for a "challenge" and was told to [touch a coin to a live electrical outlet](https://www.bbc.com/news/technology-55661279). A toddler with a speech impediment asked for music, and the assistant [solicited inappropriate clothing details](https://nypost.com/2017/12/30/parents-creeped-out-by-amazons-alexa-echo-dot-kids/). These are real incidents, not synthetic edge cases, and the next wave of LLM-backed companions will sit far closer to children than any smart speaker: in classrooms, in tutoring apps, trusted with the unfiltered questions kids only ask the people they feel safe with.
 
-Yet the benchmarks that steer LLM development (MMLU, MT-Bench, HELM, TruthfulQA) were written for adults, in English, with adult prompts. There is no widely-used, multilingual benchmark for how an AI handles a _child's_ voice and a child's needs, and crucially, none that scores **positive interaction quality** rather than only whether a model refuses harm. We built one, openly, as part of **Cohere's Tiny Aya Expedition cohort**. Cohere provided model access and compute and was hands-off on methodology; the analysis and conclusions are ours.
+Yet the benchmarks that steer LLM development (MMLU, MT-Bench, HELM, TruthfulQA) were written for adults, in English, with adult prompts. There is no widely-used, multilingual benchmark for how an AI handles a _child's_ voice and a child's needs, and crucially, none that scores **positive interaction quality** rather than only whether a model refuses harm. We built one, openly, as part of **Cohere's Tiny Aya Expedition cohort**. Cohere provided model access and was hands-off on methodology; the analysis and conclusions are ours.
 
-## What's in TinyAya v2
+## What's in the benchmark
 
 - **2,312 items** across **23 languages**: English plus 22 others spanning European, Slavic, Middle Eastern, South and East Asian, and African languages.
 - **8 categories**: general conversation, safety redirection, privacy boundaries, emotional support, creative engagement, education, civic/political, and emergency-style "other".
@@ -115,9 +115,9 @@ Difficulty, finally, is well-calibrated: pass rate drops from easy to hard, as i
 
 The full per-language, per-category, and per-difficulty breakdowns are in the dataset's [`review/balanced_review.csv`](https://huggingface.co/datasets/batuhanaktas/kids-multilingual-benchmark/blob/main/review/balanced_review.csv) and the agreement-matrix figures.
 
-## The TinyAya iOS app
+## The on-device kids companion
 
-The benchmark exists because we built [TinyAya iOS](https://github.com/aktasbatuhan/cohere-tiny-aya-for-kids/tree/main/ios), an offline voice companion for ages 4–8 running **TinyAya 3.3B (GGUF Q4_K_M)** via llama.cpp, **Whisper Tiny** for STT, and **Kokoro TTS** (with an AVSpeechSynthesizer fallback for non-English). The leaderboard drove concrete changes: per-category system-prompt rewrites, a 22-language onboarding flow, and memory-management fixes we discovered running the generation pipeline at scale.
+The benchmark exists because we built [an on-device kids companion](https://github.com/aktasbatuhan/cohere-tiny-aya-for-kids/tree/main/ios), an offline iOS voice companion for ages 4–8 running **TinyAya 3.3B (GGUF Q4_K_M)** via llama.cpp, **Whisper Tiny** for STT, and **Kokoro TTS** (with an AVSpeechSynthesizer fallback for non-English). The leaderboard drove concrete changes: per-category system-prompt rewrites, a 22-language onboarding flow, and memory-management fixes we discovered running the generation pipeline at scale.
 
 ## Limitations and future work
 
@@ -131,4 +131,4 @@ The benchmark exists because we built [TinyAya iOS](https://github.com/aktasbatu
 - **Dataset** · [`huggingface.co/datasets/batuhanaktas/kids-multilingual-benchmark`](https://huggingface.co/datasets/batuhanaktas/kids-multilingual-benchmark) (CC-BY-4.0): items, all four model responses, all judge scores, and the agreement CSVs and figures.
 - **Code** · [`github.com/aktasbatuhan/cohere-tiny-aya-for-kids`](https://github.com/aktasbatuhan/cohere-tiny-aya-for-kids) (MIT): every script behind this article, including the iOS app, the translation and judging pipelines, and the figure generators.
 
-Completed under Cohere's Tiny Aya Expedition cohort. If you use TinyAya v2 in published work, please cite the dataset card and link this article; if you find a quality issue, file it on the repo and we'll fold corrections into v3.
+Completed under Cohere's Tiny Aya Expedition cohort. If you use the Kids Multilingual Benchmark in published work, please cite the dataset card and link this article; if you find a quality issue, file it on the repo and we'll fold corrections into v3.
