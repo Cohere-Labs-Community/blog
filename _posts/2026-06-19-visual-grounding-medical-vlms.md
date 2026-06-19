@@ -1,8 +1,8 @@
 ---
 layout: distill
-title: 'When AI Doctors "See" What Isn''t There: Why Better Accuracy Doesn''t Mean Better Vision'
+title: "When AI Doctors \"See\" What Isn't There: Why Better Accuracy Doesn't Mean Better Vision"
 date: 2026-06-19 00:00:00
-description: "RLVR fine-tuning raises accuracy on medical VQA benchmarks while quietly degrading visual grounding — a new counterfactual evaluation framework exposes the gap."
+description: "RLVR fine-tuning raises accuracy on medical VQA benchmarks while quietly degrading visual grounding: a new counterfactual evaluation framework exposes the gap."
 author: "Anas Zafar"
 authors:
   - name: "Anas Zafar"
@@ -78,7 +78,7 @@ Across all benchmarks, our results point to a fundamental trade-off between accu
 Our standout illustration of this is what we call the **Modality Skeptic Paradox** (shown above). When shown a chest X-ray instead of the expected abdominal CT and asked "is the liver normal?", the image-text model correctly recognized the modality mismatch and refused to give a confident answer. The text-only model, however, also noted in its reasoning that a chest X-ray isn't suited for evaluating the liver — and then went ahead and confidently described the liver as normal anyway. The reasoning and the answer were completely decoupled.
 
 > **Limitation:** These results are based on a single model family (Qwen2.5-VL-7B) and four benchmarks; findings may vary across other architectures, model scales, or clinical domains. Our metrics are designed as diagnostic signals rather than definitive safety evaluations.
-> {: .block-warning }
+{: .block-warning }
 
 {% include figure.liquid path="assets/img/2026-06-19-visual-grounding-medical-vlms/results-tables.png" alt="Two tables showing overall model performance and benchmark-specific grounding metrics across PathVQA, PMC-VQA, SLAKE, and VQA-RAD. RL(image) achieves the highest accuracy at 58.8% but the lowest image sensitivity at 39.8% and lowest visual reliance score at 0.100. PathVQA shows a negative VRS of -0.09 for RL(text), indicating text-shortcut exploitation." caption="Overall performance (Table 1) and benchmark-specific grounding metrics (Table 2): accuracy goes up with RLVR fine-tuning, but VRS and IS go down. The negative VRS on PathVQA for the text-only model means the correct image actively hurt its performance." %}
 
@@ -88,8 +88,6 @@ These findings matter because reinforcement learning with verifiable rewards has
 
 A model that produces fluent medical explanations referencing specific visual features, while its actual decision is driven by something else entirely, is a serious risk in any setting where clinicians might trust the stated reasoning as a window into how the AI reached its conclusion.
 
-Cultural misrepresentation in a riddle game is harmless. The same gap in content moderation, legal tools, or mental health applications can have serious consequences. The same principle applies here: a model that sounds visually grounded in a demo may not be visually grounded in deployment.
-
 ## What's Next
 
 We argue that the field needs to move past accuracy-only evaluation. Our recommendations include:
@@ -98,6 +96,6 @@ We argue that the field needs to move past accuracy-only evaluation. Our recomme
 - Auditing benchmarks to ensure questions genuinely require visual information rather than being solvable from text alone
 - Designing training objectives that explicitly reward genuine image dependence, not just correct final answers
 
-This work was led by Anas Zafar, Leema Krishna Murali, and Ashish Vashist — all members of the Cohere Labs Open Science Community — another example of the kind of independent research collaboration the community helps make possible.
+This work was led by Anas Zafar, Leema Krishna Murali, and Ashish Vashist — all members of the Cohere Labs Open Science Community, another example of the kind of independent research collaboration the community helps make possible.
 
 The paper is available at [arxiv.org/abs/2603.03437](https://arxiv.org/abs/2603.03437).
