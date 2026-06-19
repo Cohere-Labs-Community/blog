@@ -77,9 +77,6 @@ Across all benchmarks, our results point to a fundamental trade-off between accu
 
 Our standout illustration of this is what we call the **Modality Skeptic Paradox** (shown above). When shown a chest X-ray instead of the expected abdominal CT and asked "is the liver normal?", the image-text model correctly recognized the modality mismatch and refused to give a confident answer. The text-only model, however, also noted in its reasoning that a chest X-ray isn't suited for evaluating the liver — and then went ahead and confidently described the liver as normal anyway. The reasoning and the answer were completely decoupled.
 
-> **Limitation:** These results are based on a single model family (Qwen2.5-VL-7B) and four benchmarks; findings may vary across other architectures, model scales, or clinical domains. Our metrics are designed as diagnostic signals rather than definitive safety evaluations.
-{: .block-warning }
-
 {% include figure.liquid path="assets/img/2026-06-19-visual-grounding-medical-vlms/results-tables.png" alt="Two tables showing overall model performance and benchmark-specific grounding metrics across PathVQA, PMC-VQA, SLAKE, and VQA-RAD. RL(image) achieves the highest accuracy at 58.8% but the lowest image sensitivity at 39.8% and lowest visual reliance score at 0.100. PathVQA shows a negative VRS of -0.09 for RL(text), indicating text-shortcut exploitation." caption="Overall performance (Table 1) and benchmark-specific grounding metrics (Table 2): accuracy goes up with RLVR fine-tuning, but VRS and IS go down. The negative VRS on PathVQA for the text-only model means the correct image actively hurt its performance." %}
 
 ## Why This Matters
