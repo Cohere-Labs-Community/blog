@@ -1,6 +1,6 @@
 ---
 layout: distill
-title: "When AI Doctors \"See\" What Isn't There: Why Better Accuracy Doesn't Mean Better Vision"
+title: 'When AI Doctors "See" What Isn''t There: Why Better Accuracy Doesn''t Mean Better Vision'
 date: 2026-06-19 00:00:00
 description: "RLVR fine-tuning raises accuracy on medical VQA benchmarks while quietly degrading visual grounding: a new counterfactual evaluation framework identify the gap."
 author: "Anas Zafar"
