@@ -9,10 +9,6 @@ authors:
     url: ""
     affiliations:
       name: "Cohere Labs Community"
-  - name: "Mayank Bhaskar"
-    url: ""
-    affiliations:
-      name: "Cohere Labs Community"
 tags: expedition research speech-to-speech translation moshi
 toc: true
 bibliography: 2026-07-02-adapting-moshi-low-resource-speech-translation.bib
