@@ -187,10 +187,10 @@ graph LR
 
 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1em; margin: 1.5em 0;">
   <div>
-    {% include figure.liquid path="assets/img/2026-07-02-tinyaya/train-loss.png" alt="Total training loss decreasing from ~9.7 to ~6.8 over 5000 steps" caption="Total training loss decreasing from ~9.7 to ~6.8 over 5000 steps. Steady decrease with no instability or NaN events." %}
+    {% include figure.liquid path="assets/img/2026-07-02-adapting-moshi-low-resource-speech-translation/train-loss.png" alt="Total training loss decreasing from ~9.7 to ~6.8 over 5000 steps" caption="Total training loss decreasing from ~9.7 to ~6.8 over 5000 steps. Steady decrease with no instability or NaN events." %}
   </div>
   <div>
-    {% include figure.liquid path="assets/img/2026-07-02-tinyaya/train-grad-norm.png" alt="Gradient norm stable around 0.3-0.5 throughout training" caption="Gradient norms remain stable around 0.3-0.5 throughout training, with occasional spikes that quickly recover." %}
+    {% include figure.liquid path="assets/img/2026-07-02-adapting-moshi-low-resource-speech-translation/train-grad-norm.png" alt="Gradient norm stable around 0.3-0.5 throughout training" caption="Gradient norms remain stable around 0.3-0.5 throughout training, with occasional spikes that quickly recover." %}
   </div>
 </div>
 
@@ -200,10 +200,10 @@ Here is what the overfit sounds like, comparing ground truth, teacher-forced, an
 <table>
 <tr><th>Source (Hindi)</th><th>Ground Truth (Turkish)</th><th>Teacher-Forced</th><th>Autoregressive</th></tr>
 <tr>
-<td><audio controls src="/blog/assets/audio/2026-07-02-tinyaya/overfit_source.wav" style="width:180px"></audio></td>
-<td><audio controls src="/blog/assets/audio/2026-07-02-tinyaya/overfit_target_gt.wav" style="width:180px"></audio></td>
-<td><audio controls src="/blog/assets/audio/2026-07-02-tinyaya/overfit_teacher_forced.wav" style="width:180px"></audio></td>
-<td><audio controls src="/blog/assets/audio/2026-07-02-tinyaya/overfit_autoregressive.wav" style="width:180px"></audio></td>
+<td><audio controls src="/blog/assets/audio/2026-07-02-adapting-moshi-low-resource-speech-translation/overfit_source.wav" style="width:180px"></audio></td>
+<td><audio controls src="/blog/assets/audio/2026-07-02-adapting-moshi-low-resource-speech-translation/overfit_target_gt.wav" style="width:180px"></audio></td>
+<td><audio controls src="/blog/assets/audio/2026-07-02-adapting-moshi-low-resource-speech-translation/overfit_teacher_forced.wav" style="width:180px"></audio></td>
+<td><audio controls src="/blog/assets/audio/2026-07-02-adapting-moshi-low-resource-speech-translation/overfit_autoregressive.wav" style="width:180px"></audio></td>
 </tr>
 </table>
 <em>Overfit test (20 samples, 300 steps). Teacher-forced closely matches ground truth; autoregressive shows the model can generate coherent speech but with exposure bias artifacts.</em>
@@ -213,16 +213,16 @@ Here is what the overfit sounds like, comparing ground truth, teacher-forced, an
 
 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1em; margin: 1.5em 0;">
   <div>
-    {% include figure.liquid path="assets/img/2026-07-02-tinyaya/train-audio-loss.png" alt="Training audio loss decreasing from ~8.3 to ~6.0" caption="Training audio loss dropping from ~8.3 to ~6.0, well below the random baseline of 7.62 (ln(2048)). The model learns meaningful audio patterns." %}
+    {% include figure.liquid path="assets/img/2026-07-02-adapting-moshi-low-resource-speech-translation/train-audio-loss.png" alt="Training audio loss decreasing from ~8.3 to ~6.0" caption="Training audio loss dropping from ~8.3 to ~6.0, well below the random baseline of 7.62 (ln(2048)). The model learns meaningful audio patterns." %}
   </div>
   <div>
-    {% include figure.liquid path="assets/img/2026-07-02-tinyaya/train-text-loss.png" alt="Training text loss decreasing from ~13.5 to ~7.2" caption="Training text loss dropping from near-random 13.5 to 7.2. The text stream is learning, confirming the 'inner monologue' provides semantic signal." %}
+    {% include figure.liquid path="assets/img/2026-07-02-adapting-moshi-low-resource-speech-translation/train-text-loss.png" alt="Training text loss decreasing from ~13.5 to ~7.2" caption="Training text loss dropping from near-random 13.5 to 7.2. The text stream is learning, confirming the 'inner monologue' provides semantic signal." %}
   </div>
   <div>
-    {% include figure.liquid path="assets/img/2026-07-02-tinyaya/val-audio-loss.png" alt="Validation audio loss decreasing steadily" caption="Validation audio loss decreasing steadily across training, showing the model generalizes beyond the training set." %}
+    {% include figure.liquid path="assets/img/2026-07-02-adapting-moshi-low-resource-speech-translation/val-audio-loss.png" alt="Validation audio loss decreasing steadily" caption="Validation audio loss decreasing steadily across training, showing the model generalizes beyond the training set." %}
   </div>
   <div>
-    {% include figure.liquid path="assets/img/2026-07-02-tinyaya/val-cb0-acc.png" alt="CB0 accuracy increasing from ~7% to ~13%" caption="Validation CB0 accuracy increasing from ~7% to ~13.4%. Random baseline is 0.05% (1/2048), so the model is 260x above chance." %}
+    {% include figure.liquid path="assets/img/2026-07-02-adapting-moshi-low-resource-speech-translation/val-cb0-acc.png" alt="CB0 accuracy increasing from ~7% to ~13%" caption="Validation CB0 accuracy increasing from ~7% to ~13.4%. Random baseline is 0.05% (1/2048), so the model is 260x above chance." %}
   </div>
 </div>
 
@@ -249,13 +249,13 @@ Here is what the broken run looked like, with text loss stuck at random, audio l
 
 <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1em; margin: 1.5em 0;">
   <div>
-    {% include figure.liquid path="assets/img/2026-07-02-tinyaya/broken-text-loss.png" alt="Text loss flatlined at ~12.5 (random)" caption="Text loss flatlined at ~12.5, which equals ln(264K), the random baseline. The text stream received no useful signal from the broken alignments." %}
+    {% include figure.liquid path="assets/img/2026-07-02-adapting-moshi-low-resource-speech-translation/broken-text-loss.png" alt="Text loss flatlined at ~12.5 (random)" caption="Text loss flatlined at ~12.5, which equals ln(264K), the random baseline. The text stream received no useful signal from the broken alignments." %}
   </div>
   <div>
-    {% include figure.liquid path="assets/img/2026-07-02-tinyaya/broken-train-audio-loss.png" alt="Audio loss plateauing around 6.1 with periodic spikes" caption="Without the text semantic signal, audio loss plateaus early around 6.1 with periodic spikes at epoch boundaries." %}
+    {% include figure.liquid path="assets/img/2026-07-02-adapting-moshi-low-resource-speech-translation/broken-train-audio-loss.png" alt="Audio loss plateauing around 6.1 with periodic spikes" caption="Without the text semantic signal, audio loss plateaus early around 6.1 with periodic spikes at epoch boundaries." %}
   </div>
   <div>
-    {% include figure.liquid path="assets/img/2026-07-02-tinyaya/broken-train-loss.png" alt="Total loss stalling around 7.3" caption="Total loss stalls around 7.3. Without semantic grounding from the text stream, the model cannot push past learning basic audio patterns." %}
+    {% include figure.liquid path="assets/img/2026-07-02-adapting-moshi-low-resource-speech-translation/broken-train-loss.png" alt="Total loss stalling around 7.3" caption="Total loss stalls around 7.3. Without semantic grounding from the text stream, the model cannot push past learning basic audio patterns." %}
   </div>
 </div>
 
