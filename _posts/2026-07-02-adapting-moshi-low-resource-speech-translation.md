@@ -6,7 +6,7 @@ description: "We adapt Kyutai's Moshi architecture for Turkish↔Hindi speech-to
 author: "Alper Balbay"
 authors:
   - name: "Alper Balbay"
-    url: ""
+    url: "https://github.com/alperiox"
     affiliations:
       name: "Cohere Labs Community"
 tags: expedition research speech-to-speech translation moshi
@@ -234,6 +234,8 @@ Here is what the overfit sounds like, comparing ground truth, teacher-forced, an
 - The composite's depth decoder position mapping was initially off-by-one. Position 0 (text prediction) was matched against CB0 targets. The training loss looked fine (0.007) but per-codebook accuracy revealed every codebook was misaligned.
 - The batch collator silently dropped parallel stream tensors (`user_audio_codes`, `model_audio_codes`), so training fell back to single-stream mode with `model_audio_embed` receiving zero gradients. This was discovered after the first GPU training run completed.
 
+**Our current status** 
+Although we have validated pipelines and promising initial results, we weren't able to utilize the whole dataset we generated due to compute constraints we encountered during the project. As we continue our scaled training runs, we plan to update our findings and publish the fully trained models if possible.
 
 ## What We Learned
 
