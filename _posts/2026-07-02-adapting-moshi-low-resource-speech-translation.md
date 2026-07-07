@@ -200,10 +200,10 @@ Here is what the overfit sounds like, comparing ground truth, teacher-forced, an
 <table>
 <tr><th>Source (Hindi)</th><th>Ground Truth (Turkish)</th><th>Teacher-Forced</th><th>Autoregressive</th></tr>
 <tr>
-<td><audio controls src="/blog/assets/audio/2026-07-02-adapting-moshi-low-resource-speech-translation/overfit_source.wav" style="width:180px"></audio></td>
-<td><audio controls src="/blog/assets/audio/2026-07-02-adapting-moshi-low-resource-speech-translation/overfit_target_gt.wav" style="width:180px"></audio></td>
-<td><audio controls src="/blog/assets/audio/2026-07-02-adapting-moshi-low-resource-speech-translation/overfit_teacher_forced.wav" style="width:180px"></audio></td>
-<td><audio controls src="/blog/assets/audio/2026-07-02-adapting-moshi-low-resource-speech-translation/overfit_autoregressive.wav" style="width:180px"></audio></td>
+<td><audio controls src="{{ site.baseurl }}/assets/audio/2026-07-02-adapting-moshi-low-resource-speech-translation/overfit_source.wav" style="width:180px"></audio></td>
+<td><audio controls src="{{ site.baseurl }}/assets/audio/2026-07-02-adapting-moshi-low-resource-speech-translation/overfit_target_gt.wav" style="width:180px"></audio></td>
+<td><audio controls src="{{ site.baseurl }}/assets/audio/2026-07-02-adapting-moshi-low-resource-speech-translation/overfit_teacher_forced.wav" style="width:180px"></audio></td>
+<td><audio controls src="{{ site.baseurl }}/assets/audio/2026-07-02-adapting-moshi-low-resource-speech-translation/overfit_autoregressive.wav" style="width:180px"></audio></td>
 </tr>
 </table>
 <em>Overfit test (20 samples, 300 steps). Teacher-forced closely matches ground truth; autoregressive shows the model can generate coherent speech but with exposure bias artifacts.</em>
