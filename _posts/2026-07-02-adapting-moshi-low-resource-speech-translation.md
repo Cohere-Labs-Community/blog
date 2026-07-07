@@ -46,11 +46,11 @@ The fine-tuned Mimi (full-parameter training, 25 epochs, lr=1e-3 on a [90hr cura
 
 We benchmarked three candidates on Hindi speech, testing both in-distribution and out-of-distribution (OOD) data:
 
-| Codec | OOD STOI | OOD PESQ-wb | OOD DNSMOS | Verdict |
-|-------|----------|-------------|------------|---------|
-| **Base Mimi** | **0.921** | **3.31** | 2.87 | Best generalization |
-| Fine-tuned Mimi | 0.825 | 2.27 | 2.76 | Overfitted, degraded |
-| DualCodec | 0.881 | 2.40 | **2.95** | Best perceptual, worst signal |
+| Codec           | OOD STOI  | OOD PESQ-wb | OOD DNSMOS | Verdict                       |
+| --------------- | --------- | ----------- | ---------- | ----------------------------- |
+| **Base Mimi**   | **0.921** | **3.31**    | 2.87       | Best generalization           |
+| Fine-tuned Mimi | 0.825     | 2.27        | 2.76       | Overfitted, degraded          |
+| DualCodec       | 0.881     | 2.40        | **2.95**   | Best perceptual, worst signal |
 
 Where **STOI** (Short-Time Objective Intelligibility) measures how well a listener can understand the words, **PESQ-wb** (Perceptual Evaluation of Speech Quality, wideband) rates how natural the audio sounds, and **DNSMOS** (Deep Noise Suppression Mean Opinion Score) is a neural predictor estimating overall audio quality without a reference signal. All are scored higher = better.
 
@@ -106,7 +106,7 @@ Model stream:  SIL  SIL  ...  m0     m1       ...
 Text stream:   src_text...     tgt_text...
 ```
 
-The user stream carries the source audio, and the model stream carries the target. A silence token (code 2048) means "not speaking." The model learns *when* to start translating by predicting silence vs. real codes, removing the need for an external Voice Activity Detection (VAD) system.
+The user stream carries the source audio, and the model stream carries the target. A silence token (code 2048) means "not speaking." The model learns _when_ to start translating by predicting silence vs. real codes, removing the need for an external Voice Activity Detection (VAD) system.
 
 **Three-way embedding sum.** At each frame, the backbone input is the element-wise sum of three separate embeddings:
 
@@ -116,7 +116,7 @@ The user stream carries the source audio, and the model stream carries the targe
 
 All three information streams merge into a single hidden representation per frame, following Moshi's multimodal fusion approach.
 
-**Hierarchical prediction.** The backbone's 36 transformer layers predict codebook 0 (CB0, semantic content) via a dedicated audio head. A frozen 6-layer depth decoder from Moshiko then predicts CB1 through CB7 (acoustic detail) autoregressively across codebooks within each frame. The backbone handles *what to say*; the depth decoder handles *how it sounds*.
+**Hierarchical prediction.** The backbone's 36 transformer layers predict codebook 0 (CB0, semantic content) via a dedicated audio head. A frozen 6-layer depth decoder from Moshiko then predicts CB1 through CB7 (acoustic detail) autoregressively across codebooks within each frame. The backbone handles _what to say_; the depth decoder handles _how it sounds_.
 
 The depth decoder uses Moshi's 8-position layout:
 
@@ -136,18 +136,18 @@ CB1: [SIL,   tgt_0, tgt_1, tgt_2, ...]     ← 1 step behind
 CB2: [SIL,   SIL,   tgt_0, tgt_1, ...]     ← 2 steps behind
 ```
 
-This gives the depth decoder causal lookahead: when predicting CB2 at frame *t*, it already has CB1 from frame *t+1*. The delay is applied in the dataset and undone after generation before Mimi decoding.
+This gives the depth decoder causal lookahead: when predicting CB2 at frame _t_, it already has CB1 from frame _t+1_. The delay is applied in the dataset and undone after generation before Mimi decoding.
 
 **What's trainable.** We fine-tune approximately 280M parameters out of 4.6B total using LoRA:
 
-| Component | Params | Method |
-|-----------|--------|--------|
-| Backbone LoRA (q_proj, v_proj, embed) | 7.8M | LoRA r=16 |
-| Projection (2048→4096) | 8.4M | Full |
-| Depth decoder I/O layers | 97.8M | Full |
-| Text embed + audio heads + model_audio_embed | 12.6M | Full / LoRA |
-| Depth decoder transformer (6 layers) | 617M | **Frozen** |
-| Backbone transformer (36 layers) | ~3.1B | **Frozen** (LoRA adapters only) |
+| Component                                    | Params | Method                          |
+| -------------------------------------------- | ------ | ------------------------------- |
+| Backbone LoRA (q_proj, v_proj, embed)        | 7.8M   | LoRA r=16                       |
+| Projection (2048→4096)                       | 8.4M   | Full                            |
+| Depth decoder I/O layers                     | 97.8M  | Full                            |
+| Text embed + audio heads + model_audio_embed | 12.6M  | Full / LoRA                     |
+| Depth decoder transformer (6 layers)         | 617M   | **Frozen**                      |
+| Backbone transformer (36 layers)             | ~3.1B  | **Frozen** (LoRA adapters only) |
 
 ## Data: 911 Hours for $50
 
@@ -155,7 +155,7 @@ No parallel Turkish-Hindi speech corpus exists at scale, so we built one.
 
 **Text collection.** We gathered 56K text pairs from three sources: approximately 2K professional translations from [FLORES](https://huggingface.co/datasets/facebook/flores), around 9K mined pairs from [OPUS-100](https://huggingface.co/datasets/opus100) (pivoted through English), and roughly 45K conversational pairs machine-translated from English datasets (DailyDialog, TopicalChat, PersonaChat) via Cohere's command-r.
 
-**Text-to-Speech generation.** We evaluated four TTS models (XTTSv2, Chatterbox, Fish Speech, OmniVoice) and selected **[OmniVoice](https://github.com/k2-fsa/OmniVoice)** for its cross-lingual reliability. A critical finding: voice *cloning* failed completely for cross-language synthesis. Turkish reference audio used to generate Hindi output produced garbled speech where source phonetics bled through. Voice *design* mode (structured text descriptions like `[gender]female[pitch]moderate[accent]Indian`) passed 15 out of 15 quality checks with zero Word Error Rate (WER).
+**Text-to-Speech generation.** We evaluated four TTS models (XTTSv2, Chatterbox, Fish Speech, OmniVoice) and selected **[OmniVoice](https://github.com/k2-fsa/OmniVoice)** for its cross-lingual reliability. A critical finding: voice _cloning_ failed completely for cross-language synthesis. Turkish reference audio used to generate Hindi output produced garbled speech where source phonetics bled through. Voice _design_ mode (structured text descriptions like `[gender]female[pitch]moderate[accent]Indian`) passed 15 out of 15 quality checks with zero Word Error Rate (WER).
 
 We deployed **42 [Vast.ai](https://vast.ai) GPU instances** running OmniVoice with 14 voice designs across both directions (Turkish to Hindi, Hindi to Turkish). Total cost: approximately $50 in GPU rental for roughly 1.3M audio clips (about 911 hours).
 
@@ -183,6 +183,7 @@ graph LR
 **Loss function.** We train with a weighted sum of text cross-entropy (weight 0.1) and per-codebook audio cross-entropy (weight 1.0), masked to target positions only. An important fix discovered during the project: approximately 62% of text tokens are special padding (between words, end-of-text, silence), and their `lm_head` rows are mean-initialized and effectively unlearnable. Weighting these equally with real tokens pinned the text loss at roughly ln(V) ≈ 12.5 (random). Down-weighting padding to 0.01 unblocked text learning immediately.
 
 **What worked:**
+
 - The Moshi-style composite architecture (backbone predicts CB0, depth decoder predicts CB1 through CB7) trained stably from the first step. Gradient norms stayed well-behaved, and total loss decreased steadily across 5000 steps on 2×H100 GPUs. An overfit test on 20 samples reached 100% teacher-forced accuracy on all 8 codebooks within 300 steps.
 
 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1em; margin: 1.5em 0;">
@@ -230,11 +231,12 @@ Here is what the overfit sounds like, comparing ground truth, teacher-forced, an
 - A W&B hyperparameter sweep (8 Bayesian + hyperband trials) identified `lora_r=64` as the dominant capacity lever and `text_weight=0.2` as the sweet spot between audio quality and semantic grounding.
 
 **What broke (repeatedly):**
-- FSDP (Fully Sharded Data Parallel) multi-GPU checkpointing was too buggy. We went through **8 distinct failures** before getting save/load/resume working, ranging from missing `model_audio_embed` in the checkpoint, to FSDP shards being saved instead of full tensors, to `save_pretrained` being called only on rank 0 when it requires all ranks to participate in the allgather. The core lesson: with FSDP, *any* operation that touches model parameters must involve all ranks.
+
+- FSDP (Fully Sharded Data Parallel) multi-GPU checkpointing was too buggy. We went through **8 distinct failures** before getting save/load/resume working, ranging from missing `model_audio_embed` in the checkpoint, to FSDP shards being saved instead of full tensors, to `save_pretrained` being called only on rank 0 when it requires all ranks to participate in the allgather. The core lesson: with FSDP, _any_ operation that touches model parameters must involve all ranks.
 - The composite's depth decoder position mapping was initially off-by-one. Position 0 (text prediction) was matched against CB0 targets. The training loss looked fine (0.007) but per-codebook accuracy revealed every codebook was misaligned.
 - The batch collator silently dropped parallel stream tensors (`user_audio_codes`, `model_audio_codes`), so training fell back to single-stream mode with `model_audio_embed` receiving zero gradients. This was discovered after the first GPU training run completed.
 
-**Our current status** 
+**Our current status**
 Although we have validated pipelines and promising initial results, we weren't able to utilize the whole dataset we generated due to compute constraints we encountered during the project. As we continue our scaled training runs, we plan to update our findings and publish the fully trained models if possible.
 
 ## What We Learned
