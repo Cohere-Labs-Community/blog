@@ -48,11 +48,11 @@ For example, a formal Sinhala prompt might look like this:
 
 ## A quick reality check: how people type
 
-| Prompt type | Example |
-| --- | --- |
-| Formal Sinhala | අද කාලගුණය කෙසේ ද? |
-| Romanized Sinhala / Singlish | ada weather eka kohomada? |
-| Code-mixed Sinhala-English | heta meeting ekata kalin summary eka denna |
+| Prompt type                  | Example                                    |
+| ---------------------------- | ------------------------------------------ |
+| Formal Sinhala               | අද කාලගුණය කෙසේ ද?                         |
+| Romanized Sinhala / Singlish | ada weather eka kohomada?                  |
+| Code-mixed Sinhala-English   | heta meeting ekata kalin summary eka denna |
 
 A model that performs well on the first prompt but fails on the second and third has not failed at a random edge case. It has failed at a common digital behavior. Calling that "noise" is convenient for datasets, but not for users.
 
