@@ -71,7 +71,7 @@ Everything we learned flowed into Crane AI Labs: the rigor, the storytelling, th
 
 In two weeks, our team built Tiny Facade, an open-source Android service that lets any app run a multilingual AI model on a phone, offline. A 3.35B model with no tool-calling training outperformed a model more than twice its size on Luganda. Along the way we found a bug in a globally used inference tool that was quietly degrading performance for every user, and fixed it, releasing corrected models for the whole community. Julia Kreutzer from Cohere mentored us through the research and pushed us to ship something rigorous, not just fast.
 
-That work caught the attention of Google DeepMind, who featured Crane AI Labs in their official Gemma showcase. But it started here, in a Discord server, with a word-review task done carefully.
+Our work at Crane has since been featured by Google DeepMind in their official Gemma showcase. But it all started here, in a Discord server, with a word-review task done carefully.
 
 ## Own Your Space, and Keep the Standard
 
