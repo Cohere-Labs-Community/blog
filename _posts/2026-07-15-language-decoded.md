@@ -2,7 +2,9 @@
 layout: distill
 title: "Language, Decoded: What if you could code in your own language?"
 date: 2026-07-15 00:00:00
-description: "Quality data for under-resourced languages is hard to acquire. It is even harder to get code in these languages. Through research, it showed that introducing code in training a model has proved to be a well rounded data source to improve performance. How can we utilize non-English code to strengthen the performance of these multilingual models, especially where data scarcity exists?"
+description: "Quality data for under-resourced languages is hard to acquire. It is even harder to get code in these languages. Through research, it showed that introducing code in training a model has proved to be a well rounded data source to improve performance. How can we utilize non-English code to strengthen the performance of these multilingual models, especially where data scarcity exists?
+
+We started with the question:- what if the code you train a language model on was written in a language other than English?"
 author: "Rafay Mustafa"
 authors:
   - name: "Rafay Mustafa"
@@ -20,13 +22,6 @@ authors:
 tags: community research writing
 toc: true
 ---
-
-# **Language, Decoded: What if you could code in your own language?**
-
-_Quality data for under-resourced languages is hard to acquire. It is even harder to get code in these languages. Through research,\[1\] it showed that introducing code in training a model has proved to be a well rounded data source to improve performance. How can we utilize non-English code to strengthen the performance of these multilingual models, especially where data scarcity exists?_
-
-We started with the question: _what if the code you train a language model on was written in a language other than English?_
-
 ## **The Question Nobody Was Asking**
 
 Here\'s something that gets taken for granted in AI research: code is English. Not just the programming language syntax (which is Latin-script by design), but everything around it; variable names, function names, comments, documentation.
