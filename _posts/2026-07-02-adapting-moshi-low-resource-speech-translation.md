@@ -274,7 +274,11 @@ The per-codebook picture is the reassuring part: no stream is dead, every codebo
 
 Language identity comes first (the pilot already saw it at 26K). Text translation follows and grows genuinely strong: the free-run text inner-monologue reaches a chrF++ <d-cite key="popovic2017chrf"></d-cite> of ~25.7 for Hindi-to-Turkish and ~25.1 for Turkish-to-Hindi against machine-translated reference text. Intelligible audio synthesis is the capability that has not yet caught up. The model learns _what_ to say well before it learns _how_ to render it as clean speech.
 
-<aside>The teacher-forced curves above are exported from the run's live dashboard on <a href="https://wandb.ai/cataluna84/tinyaya-stage2-tpu/runs/xzcb60bl"><strong>Weights &amp; Biases</strong></a>; the free-run end-task points come from the release-eval checkpoint sweep. The full set of training charts — losses, per-codebook accuracies, and the end-task <code>eval/*</code> metrics backfilled onto the same training-step axis — can be explored interactively there.</aside>
+The static figures above are exported from the run's live dashboard; the free-run end-task points come from the release-eval checkpoint sweep. The **interactive report** below shows the full emergence set — teacher-forced text and cb0 accuracy, the end-task `eval/*` metrics backfilled onto the same training-step axis, the composite loss, and all eight per-codebook accuracies — live on Weights & Biases:
+
+<iframe src="https://wandb.ai/cataluna84/tinyaya-stage2-tpu/reports/TinyAya-v0.3-Emergence-and-Data-Efficiency--VmlldzoxNzU1OTU1NQ==" title="TinyAya v0.3 — live emergence report on Weights & Biases" style="border:1px solid #e1e0d9;border-radius:8px;width:100%;height:920px;margin:1.5em 0" loading="lazy"></iframe>
+
+<div style="text-align:center;margin:-0.5em 0 1.5em"><a href="https://wandb.ai/cataluna84/tinyaya-stage2-tpu/reports/TinyAya-v0.3-Emergence-and-Data-Efficiency--VmlldzoxNzU1OTU1NQ=="><strong>Open the interactive report on Weights &amp; Biases →</strong></a></div>
 
 **The text-backbone bet pays off, and it pays off data-efficiently, in the text stream.** This was the whole premise: that multilingual text pre-training would let the model learn translation with less data than an audio-first system needs. In the inner monologue, it does. Within roughly three epochs the teacher-forced text accuracy reaches 96.6% and free-run text translation reaches chrF++ ~25 in both directions. The head start is real, and it shows up exactly where the text knowledge lives.
 
