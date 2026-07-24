@@ -9,6 +9,10 @@ authors:
     url: "https://github.com/alperiox"
     affiliations:
       name: "Cohere Labs Community"
+  - name: "Mayank Bhaskar"
+    url: "https://github.com/cataluna84"
+    affiliations:
+      name: "Cohere Labs Community"
 tags: expedition research speech-to-speech translation moshi
 toc: true
 bibliography: 2026-07-02-adapting-moshi-low-resource-speech-translation.bib
@@ -239,9 +243,54 @@ Here is what the overfit sounds like, comparing ground truth, teacher-forced, an
 **Our current status**
 Although we have validated pipelines and promising initial results, we weren't able to utilize the whole dataset we generated due to compute constraints we encountered during the project. As we continue our scaled training runs, we plan to update our findings and publish the fully trained models if possible.
 
+### Training at Scale: The Full 840K Run
+
+That scaled run is now done. **v0.3 is the full-corpus training run** the pilot deferred: the same Cohere2-LoRA backbone and frozen Moshiko depth decoder, but trained on the entire synthetic corpus rather than a 26K slice. It ran on a single TPU **v6e-16** under a WSD (Warmup-Stable-Decay) learning-rate schedule (a short warmup, a long stable plateau, then an **11,000-step linear anneal to zero**) for **2.07 epochs: 76,250 steps, 2.44M samples, and 6.59B tokens** at a global batch of 32, with **zero preemptions** from start to finish.
+
+At full scale the pilot's open question becomes measurable. The teacher-forced validation signal (logged every 250 steps) shows the two streams learning at very different rates:
+
+- **Text inner-monologue token accuracy climbs from 25.6% to 96.6%**, crossing 90% by roughly step 27,500. The text stream learns the translation mapping, and it learns it early.
+- **CB0 (the semantic audio codebook) accuracy rises from 10.4% into the mid-30s within the first 6,000 steps, then crawls to a plateau around 41.5%.** The coarse acoustic token improves fast and then stops; its ceiling is set by the frozen depth decoder, not by how much more data we feed it.
+- **Composite validation loss falls monotonically from 6.72 to 2.82** (a 0.4·text + 0.6·audio weighting), across both the plateau and the anneal.
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1em; margin: 1.5em 0;">
+  <div>
+    {% include figure.liquid path="assets/img/2026-07-02-adapting-moshi-low-resource-speech-translation/v0.3-training-dynamics.png" alt="v0.3 composite, audio, and text validation loss decreasing over the plateau and the 11,000-step WSD anneal to step 76,250" caption="v0.3 training dynamics: composite, audio, and text validation loss over the stable plateau and the 11,000-step WSD anneal to step 76,250. The final composite validation loss settles at 2.82." %}
+  </div>
+  <div>
+    {% include figure.liquid path="assets/img/2026-07-02-adapting-moshi-low-resource-speech-translation/v0.3-per-codebook-acc.png" alt="v0.3 per-codebook teacher-forced accuracy at step 76,000, every Mimi codebook well above the 0.05% chance floor with a coarse-to-fine falloff" caption="Per-codebook teacher-forced accuracy at step 76,000. Every one of Mimi's eight codebooks sits well above the 0.05% chance floor, in a smooth coarse-to-fine falloff set by the frozen depth decoder. Nothing collapsed." %}
+  </div>
+</div>
+
+The per-codebook picture is the reassuring part: no stream is dead, every codebook carries information. The open question is how much of that signal survives free-running (autoregressive) generation, not just teacher forcing, which is exactly what the release evals measure.
+
 ## What We Learned
 
-**A text-only backbone can learn audio from scratch**, but it is slow. After 5000 steps (roughly 1.5 epochs on 26K samples), the model reliably produces Hindi for Turkish-to-Hindi and Turkish for Hindi-to-Turkish. It learned language identity, but sentence-level translation has not emerged yet. The convergence trajectory suggests that the full 840K dataset with more epochs could change this picture, but we have not been able to verify that given compute constraints.
+**A text-only backbone can learn audio from scratch**, but it is slow. After 5000 steps (roughly 1.5 epochs on 26K samples), the model reliably produces Hindi for Turkish-to-Hindi and Turkish for Hindi-to-Turkish. It learned language identity, but sentence-level translation has not emerged yet. The convergence trajectory suggested that the full 840K dataset with more epochs would change this picture, and the full-corpus v0.3 run confirmed it does, with a clear and consistent shape.
+
+**Capability emerges in a fixed order: language identity, then text translation, then audio synthesis.** This ordering is v0.3's central finding, and the answer to the question the pilot left open.
+
+{% include figure.liquid path="assets/img/2026-07-02-adapting-moshi-low-resource-speech-translation/v0.3-emergence-curve.png" alt="v0.3 emergence curve: teacher-forced text accuracy rising to 96.6% and free-run text chrF++ to about 25 while generated-audio ASR-chrF++ stays near the floor and BLASER-QE holds around 2.5, showing language identity then text translation emerging with audio synthesis lagging" caption="The emergence curve. Over training, teacher-forced text accuracy climbs to 96.6% and free-run text translation reaches chrF++ ~25, while generated-audio ASR-chrF++ stays near the floor and BLASER-2.0 QE holds around 2.5. Capability appears in order: language identity, then text translation, then, still on the frontier, audio synthesis." %}
+
+Language identity comes first (the pilot already saw it at 26K). Text translation follows and grows genuinely strong: the free-run text inner-monologue reaches a chrF++ <d-cite key="popovic2017chrf"></d-cite> of ~25.7 for Hindi-to-Turkish and ~25.1 for Turkish-to-Hindi against machine-translated reference text. Intelligible audio synthesis is the capability that has not yet caught up. The model learns _what_ to say well before it learns _how_ to render it as clean speech.
+
+The static figures above are exported from the run's live dashboard; the free-run end-task points come from the release-eval checkpoint sweep. The **interactive report** below shows the full emergence set — teacher-forced text and cb0 accuracy, the end-task `eval/*` metrics backfilled onto the same training-step axis, the composite loss, and all eight per-codebook accuracies — live on Weights & Biases:
+
+<iframe src="https://wandb.ai/cataluna84/tinyaya-stage2-tpu/reports/TinyAya-v0.3-Emergence-and-Data-Efficiency--VmlldzoxNzU1OTU1NQ==" title="TinyAya v0.3 — live emergence report on Weights & Biases" style="border:1px solid #e1e0d9;border-radius:8px;width:100%;height:920px;margin:1.5em 0" loading="lazy"></iframe>
+
+<div style="text-align:center;margin:-0.5em 0 1.5em"><a href="https://wandb.ai/cataluna84/tinyaya-stage2-tpu/reports/TinyAya-v0.3-Emergence-and-Data-Efficiency--VmlldzoxNzU1OTU1NQ=="><strong>Open the interactive report on Weights &amp; Biases →</strong></a></div>
+
+**The text-backbone bet pays off, and it pays off data-efficiently, in the text stream.** This was the whole premise: that multilingual text pre-training would let the model learn translation with less data than an audio-first system needs. In the inner monologue, it does. Within roughly three epochs the teacher-forced text accuracy reaches 96.6% and free-run text translation reaches chrF++ ~25 in both directions. The head start is real, and it shows up exactly where the text knowledge lives.
+
+**The generated audio carries a real, if weak, translation signal; it is acoustically degraded, not semantically empty.** BLASER-2.0 <d-cite key="seamless2023blaser"></d-cite>, a reference-free score that embeds source and generated _speech_ directly (no ASR transcription in the loop), rates the generated audio at a quality-estimation score of about **2.5 out of 5** in both directions. That is meaningfully higher than the ASR-based metrics suggest, and the gap is informative: BLASER finds source-to-generation similarity that a transcript cannot recover. The translation intent survives into the audio; what degrades is the acoustic rendering.
+
+{% include figure.liquid path="assets/img/2026-07-02-adapting-moshi-low-resource-speech-translation/v0.3-see-it-learn.gif" alt="Animated spectrogram of v0.3 generated target speech across training checkpoints, sharpening from noise toward speech-like structure" caption="See it learn. The generated target-speech spectrogram across training checkpoints: structure sharpens over training, so the audio is acquiring speech-like form even where it is not yet ASR-intelligible, consistent with the weak-but-real BLASER signal." %}
+
+**Intelligible speech synthesis is the remaining frontier, and it is bounded by the frozen depth decoder, not by translation understanding.** Transcribed back to text, the generated audio scores chrF++ 3.7 (Hindi-to-Turkish) and 9.6 (Turkish-to-Hindi), against a ground-truth-audio topline of 92.1 and 86.6, so the codec-and-ASR pipeline ceiling is intact; it is the synthesis that falls short. Perceptual quality sits 1.34 MOS below ground truth (DNSMOS <d-cite key="reddy2021dnsmos"></d-cite> Δ −1.34), and an LLM adequacy judge (GEMBA) rates the transcripts 1.1 out of 5. The bottleneck is the CB0-and-above audio generation, capped by the depth decoder we deliberately kept frozen, not the model's grasp of the translation.
+
+{% include figure.liquid path="assets/img/2026-07-02-adapting-moshi-low-resource-speech-translation/v0.3-eval-vs-topline.png" alt="Bar chart of v0.3 end-task chrF++ versus the ground-truth-audio topline in both directions: generated-audio ASR-chrF++ 3.7 and 9.6 against toplines 92.1 and 86.6, with free-run text chrF++ around 25" caption="End-task chrF++ against the ground-truth-audio topline, both directions. The model translates in text (~25 chrF++), but the generated audio (ASR-chrF++ 3.7 / 9.6) sits far below the intact codec-and-ASR ceiling (92.1 / 86.6). The gap is speech synthesis, not translation." %}
+
+**On real human speech, v0.3 is distribution-bound to its synthetic-TTS acoustics.** We also evaluated on FLEURS, real human recordings re-encoded through Mimi. This is an _acoustic_ domain shift only: the FLEURS texts overlap our training corpus 200 out of 200 (via the shared FLORES slice, audited), so it is not a held-out-text benchmark and we do not treat it as one. Even so, the text stream collapses from ~25 chrF++ in-domain to ~8 on real-speech input, and the topline itself drops to ~61-67. v0.3 has learned to translate the acoustic distribution it was trained on; real microphones are out of that distribution. This is expected for a first full-corpus run on purely synthetic audio, and it is part of the honest picture.
 
 **The Moshi architecture is remarkably modular.** Swapping the backbone, using pretrained depth decoder weights, and adding parallel streams all composed cleanly. The depth decoder's frozen weights "just worked" with our backbone's representations after a learned 2048-to-4096 projection. This has implications for low-resource S2S generally: if the depth decoder transfers across backbones, teams can focus their compute on the temporal backbone and reuse Moshiko's acoustic modeling.
 
@@ -267,7 +316,17 @@ Here is what the broken run looked like, with text loss stuck at random, audio l
 
 ## What Comes Next
 
-This expedition demonstrated that text-only multilingual models can bootstrap audio modality learning. The architecture works, the data pipeline scales, and the text stream provides real semantic grounding. What remains open is the data efficiency question: how much training on the full 840K dataset is needed before translation quality emerges, not just language identity? We are releasing the full pipeline (code, data, and reports) so others can extend this work to other low-resource language pairs and help answer that question.
+The pilot closed on a question, _how much training on the full 840K dataset is needed before translation quality emerges, not just language identity?_, and v0.3 answers it. Translation quality **does** emerge, in the text inner-monologue, within about three epochs: teacher-forced text accuracy of 96.6% and free-run text chrF++ around 25 in both directions. What has _not_ emerged at this data and compute budget is intelligible speech synthesis. The frontier moved from "does translation emerge at all" to "how do we render the translation the model has already learned as clean speech."
+
+That reframing points at concrete next levers:
+
+- **Unfreeze or adapt the depth decoder.** The clearest single result of v0.3 is that CB0 accuracy plateaus while the audio topline-to-generation gap is a _synthesis_ gap. The depth decoder we kept frozen from Moshiko is the ceiling; letting it adapt (fully, or with its own adapters) is the most direct lever on audio fidelity.
+- **More data and compute.** The text stream is still improving at step 76,250; a larger step budget and more corpus would extend the trajectory we can already see.
+- **Real-speech data.** The FLEURS collapse shows v0.3 is bound to synthetic-TTS acoustics. Mixing in real recordings is the way out of that distribution.
+
+To make the emergence itself a reusable artifact, we are releasing the **full ~87-checkpoint suite** from the v0.3 run, not just the final weights, so the data-efficiency curve can be studied checkpoint by checkpoint. The interactive training charts are on [Weights & Biases](https://wandb.ai/cataluna84/tinyaya-stage2-tpu/runs/xzcb60bl), the release model is on [HuggingFace](https://huggingface.co/tiny-aya-translate/tr-hi-s2st-v0.3), and the full end-task evaluation (every number in this section, with method and reproducibility detail) is in the [v0.3 evaluation report](https://github.com/tiny-aya-simultaneous-translation/model/blob/feat/v0.3-implementation/docs/v0.3-eval-report.md).
+
+As before, we are releasing the entire pipeline (code, data, and reports) so others can extend this work to other low-resource language pairs.
 
 ## Acknowledgments
 
@@ -282,6 +341,8 @@ This work was done as part of the [Cohere Labs](https://cohere.com/research) Exp
 
 And, special thanks to [Irem Ergun](https://www.linkedin.com/in/irem-machine-learning-engineer/) for mentoring us throughout the expedition and for shaping both the technical direction and this write-up!
 
+**Compute.** The full-corpus v0.3 training run was made possible by a grant from **[Google's TPU Research Cloud (TRC)](https://sites.research.google/trc/)**, which provided the Cloud **TPU v6e-16** on which the 76,250-step run was trained. We gratefully acknowledge the TRC program's support.
+
 ## Resources
 
 The code, data pipeline, model weights, and detailed technical reports are all open:
@@ -289,5 +350,8 @@ The code, data pipeline, model weights, and detailed technical reports are all o
 - [Model training code](https://github.com/tiny-aya-simultaneous-translation/model)
 - [Data generation pipeline](https://github.com/tiny-aya-simultaneous-translation/data-pipeline)
 - [Model weights on HuggingFace](https://huggingface.co/tiny-aya-translate/tinyaya-stage2-tr-hi-pt)
+- [v0.3 full-corpus model weights](https://huggingface.co/tiny-aya-translate/tr-hi-s2st-v0.3)
+- [v0.3 evaluation report](https://github.com/tiny-aya-simultaneous-translation/model/blob/feat/v0.3-implementation/docs/v0.3-eval-report.md)
+- [v0.3 training run (interactive W&B charts)](https://wandb.ai/cataluna84/tinyaya-stage2-tpu/runs/xzcb60bl)
 - [Audio QC pipeline](https://github.com/tiny-aya-simultaneous-translation/sound-quality-check)
 - [Technical reports](https://github.com/tiny-aya-simultaneous-translation/tiny-aya-deliverables)
