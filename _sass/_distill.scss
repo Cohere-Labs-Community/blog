@@ -237,10 +237,11 @@ d-article {
   }
 
   figure.post-figure {
-    grid-column: text;
+    grid-column: text !important;
     justify-self: stretch;
     max-width: 100%;
     width: 100%;
+    margin: 1.25rem 0;
 
     picture {
       display: block;
