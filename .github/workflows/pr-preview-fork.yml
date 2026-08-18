@@ -67,6 +67,11 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           persist-credentials: false
+          # Fork code is executed here (jekyll build / purgecss), but only after
+          # manual approval via the fork-gate environment, with contents: read and
+          # no persisted credentials/secrets. The privileged deploy job never checks
+          # out fork code. Opt in required since actions/checkout v7.
+          allow-unsafe-pr-checkout: true
       - name: Setup Ruby 💎
         uses: ruby/setup-ruby@v1
         with:
