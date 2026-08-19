@@ -22,6 +22,7 @@ authors:
 tags: community research writing
 toc: true
 ---
+
 ## **The Question Nobody Was Asking**
 
 Here\'s something that gets taken for granted in AI research: code is English. Not just the programming language syntax (which is Latin-script by design), but everything around it; variable names, function names, comments, documentation.

@@ -10,6 +10,13 @@ $(window).on("load", function () {
       .shadowRoot.querySelector("style")
       .sheet.insertRule(".panel {border-color: var(--global-divider-color) !important;}");
   });
+  // Override styles of math, whose KaTeX shadow styles hardcode a near-black color.
+  document.querySelectorAll("d-math").forEach(function (math) {
+    var style = math.shadowRoot && math.shadowRoot.querySelector("style");
+    if (style && style.sheet) {
+      style.sheet.insertRule(".katex { color: var(--global-text-color) !important; }");
+    }
+  });
   // Override styles of the citations.
   document.querySelectorAll("d-cite").forEach(function (cite) {
     cite.shadowRoot.querySelector("div > span").setAttribute("style", "color: var(--global-theme-color);");
