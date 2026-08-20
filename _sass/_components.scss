@@ -35,6 +35,23 @@ ul.task-list input[type="checkbox"] {
   text-align: center;
 }
 
+// Authorship note
+
+.authorship-note {
+  margin-top: 1.5rem;
+  margin-bottom: 2.5rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 0.75rem;
+  background-color: var(--global-card-bg-color);
+  color: var(--global-text-color-light);
+  font-size: 0.9rem;
+
+  p {
+    margin: 0;
+  }
+}
+
 // Author bios
 
 .author-bios {

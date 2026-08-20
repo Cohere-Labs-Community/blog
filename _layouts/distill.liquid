@@ -86,6 +86,8 @@
       {% endif %}
 
       <d-article>
+        {% include authorship_note.liquid %}
+
         {% if page.toc and page.toc.size > 0 %}
           <d-contents>
             <nav class="l-text figcaption">
