@@ -15,7 +15,7 @@ tags: community research writing
 toc: true
 ---
 
-## The Problem We Want to Solve
+## The problem we want to wolve
 
 Scientific and engineering timeseries data analysis is not standardized, which means researchers carry out a lot of repeated ad hoc coding work and end up with data artifacts that diverge and create multiple sources of truth. FeatureGraph can start to solve the problem by standardizing researcher work and creating a single source of truth for computed and derived analysis.
 
@@ -39,5 +39,20 @@ By coupling construction and access, assumptions can be changed and a study reru
 
 An additional benefit of using FeatureGraph is the ability to natively automate research tasks with AI agents in constrained workflows, allowing language models to construct and use the same derived studies as human researchers. Ongoing development on this is discussed in later sections.
 
+## How it works
+
+FeatureGraph takes a raw timeseries recording or data column and produces an object-level summary. An object is an identifiable event in a timeseries signal described by properties like its height, duration, and shape. The example below illustrates how a timeseries oscillation signal such as human breathing can be split into individual waves, each called an object.
+
+The same object creation logic gets applied to other oscillatory behaviors like pressure changes in an industrial reactor or mechanical pulses from a rotating drill string. Object construction depends only on the shape of the signal and not on outside context, so the process is domain-agnostic and the accuracy of the derived properties can be traced directly back to the construction parameters, such as smoothing window sizes and detected periodicity of the wave.
+
+Non-oscillatory signal behavior patterns are also in use as object construction templates, and objects other than individual waves can be created from oscillatory signals, but that is not discussed in this post.
+
+BIDMC and CapnoBase are two public datasets of respiration recordings that measure breathing using different signals and sampling frequencies. FeatureGraph works in one-second intervals for both datasets, so the same measures can be computed on each. 
 
 {% include figure.liquid path="assets/img/breaths.png" alt="Two breath objects" caption="Raw respiration data gets converted to two breath objects." %}
+
+In this case the constructed objects are the two breaths from a BIDMC recording. The accuracy of the objects is inspectable and verifiable at the point of construction. Because the construction depends only on the shape of the signal and not on outside context, the results can be traced back to the construction parameters. Each summary is stored and can be queried through the data service.
+
+
+
+
