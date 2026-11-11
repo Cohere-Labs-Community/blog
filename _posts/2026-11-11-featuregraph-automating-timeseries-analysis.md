@@ -5,8 +5,8 @@ date: YYYY-MM-DD HH:MM:SS
 description: "One-sentence description of your post."
 author: "Your Name"
 authors:
-  - name: "Your Full Name"
-    url: "https://example.com"
+  - name: "Nazia Habib"
+    url: "https://example.com](https://www.linkedin.com/in/naziahabib/"
     image: "your-name.jpg"
     bio: "A short third-person bio for the About the author section."
     affiliations:
