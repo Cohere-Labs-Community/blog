@@ -6,7 +6,7 @@ description: "Scientists and researchers carry out a lot of repeated ad hoc codi
 author: "Nazia Habib"
 authors:
   - name: "Nazia Habib"
-    url: "https://www.linkedin/in/naziahabib.com"
+    url: "https://www.linkedin.com/in/naziahabib"
     image: "nazia-habib.jpg"
     bio: "Nazia Habib is a research engineer and data scientist building FeatureGraph, a framework for generative scientific data analysis using cost-effective language models. She specializes in the verification and behavioral compliance of automated systems."
     affiliations:
