@@ -1,9 +1,9 @@
 ---
 layout: distill
-title: "Your Title Here"
+title: "FeatureGraph: automating and standardizing scientific and engineering timeseries analysis"
 date: YYYY-MM-DD HH:MM:SS
-description: "One-sentence description of your post."
-author: "Your Name"
+description: "Scientists and researchers carry out a lot of repeated ad hoc coding work and end up with data artifacts that diverge and create multiple sources of truth; FeatureGraph can start to solve the problem by standardizing researcher work."
+author: "Nazia Habib"
 authors:
   - name: "Nazia Habib"
     url: "https://www.linkedin/in/naziahabib.com"
