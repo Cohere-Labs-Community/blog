@@ -7,7 +7,7 @@ author: "Your Name"
 authors:
   - name: "Nazia Habib"
     url: "https://www.linkedin/in/naziahabib.com"
-    image: "your-name.jpg"
+    image: "nazia-habib.jpg"
     bio: "Nazia Habib is a research engineer and data scientist building FeatureGraph, a framework for generative scientific data analysis using cost-effective language models. Her background is in helping research teams in oil and gas drilling and automation standardize their behavioral monitoring workflows. She specializes in the verification and behavioral compliance of automated systems."
     affiliations:
       name: "Cohere Labs Community"
