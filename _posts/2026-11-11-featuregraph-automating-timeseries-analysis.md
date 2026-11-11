@@ -39,3 +39,5 @@ By coupling construction and access, assumptions can be changed and a study reru
 
 An additional benefit of using FeatureGraph is the ability to natively automate research tasks with AI agents in constrained workflows, allowing language models to construct and use the same derived studies as human researchers. Ongoing development on this is discussed in later sections.
 
+
+{% include figure.liquid path="assets/img/breaths.png" alt="Two breath objects" caption="Raw respiration data gets converted to two breath objects." %}
