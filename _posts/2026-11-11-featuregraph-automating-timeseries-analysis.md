@@ -62,9 +62,13 @@ FeatureGraph has two parts: the compiler and the query layer. The compiler turns
 Every object FeatureGraph produces moves through five layers. The first four layers of the compiler are built, fully deterministic, and run completely outside any language model. The fifth layer is being built to work with both human queries and agent-driven loops.
 
 P - primitive. A built-in compiler operation trusted by construction. Example: identifying the rising or falling state in an oscillation, or calculating how much a physical quantity has exceeded a threshold over time.
+
 D - definition. A parameter or configuration chosen by the user or supplied from outside the compiler, such as window size.
+
 O - object. The compiled output of a definition, such as the amplitudes, periods, or durations of individual waves in a sample.
+
 M - measure. A derived quantitative value computed from one or more objects, such as average duration or maximum temporal asymmetry.
+
 S - scientific interpretation. This is the layer outside the scope of the deterministic compiler. It is a claim about what the measures mean, written by a person or agent.
 
 The current version of FeatureGraph is built specifically for oscillatory scientific and engineering signals, but the platform can be adapted and customized to work with other types of timeseries data. FeatureGraph does not retain or store raw data within the service, and only the constructed objects are available to be queried. 
@@ -80,7 +84,7 @@ A user question is sent as written:
 Among confident CapnoBase cases, which are outliers in BOTH the number of detected cycles and mean temporal symmetry? An outlier is a value at least 1.5 sample standard deviations from the mean of that measure across the confident cases in that dataset.
 
 The agent's exposed response is a JSON query:
-
+```
 {
   "op": "intersect",
   "of": [
@@ -90,6 +94,7 @@ The agent's exposed response is a JSON query:
      "from": {"dataset": "capnobase", "is_confident": true}}
   ]
 }
+```
 
 The agent itself writes the query, translating it from natural language, and a separate Python program outside the agent checks the query and runs it. It confirms that the query is well-formed, that the dataset it names exists in the table, and that it can run. 
 
@@ -98,9 +103,13 @@ The agent itself writes the query, translating it from natural language, and a s
 The scientific interpretation or query layer in FeatureGraph is composed of 5 agent types. 
 
 **Investigator**: proposes hypotheses as labeled free text. Nothing becomes a finding until tested. It can be replaced by human-authored queries.
+
 **Tester**: writes specs that run through an outside deterministic program called the executor, checked by validation and held-out data. This is the agent type built for the Command A demo linked above.
+
 **Critic**: judges whether a stated finding follows from what was actually run.
+
 **Recorder**: writes the provenance record from run logs.
+
 **Translator**: maps a new domain’s vocabulary onto the schema. This role is deferred until a later release. For now, each domain’s choices are made by hand and recorded.
 
 {% include figure.liquid path="assets/img/agents.png" alt="Agent construction" caption="Two agent types are built, with one in progress and two planned." %}
