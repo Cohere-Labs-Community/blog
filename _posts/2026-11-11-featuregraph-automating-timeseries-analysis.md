@@ -15,7 +15,7 @@ tags: community research writing
 toc: true
 ---
 
-## The problem we want to wolve
+## The problem we want to solve
 
 Scientific and engineering timeseries data analysis is not standardized, which means researchers carry out a lot of repeated ad hoc coding work and end up with data artifacts that diverge and create multiple sources of truth. FeatureGraph can start to solve the problem by standardizing researcher work and creating a single source of truth for computed and derived analysis.
 
