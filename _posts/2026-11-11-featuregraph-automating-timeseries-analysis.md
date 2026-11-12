@@ -73,7 +73,7 @@ S - scientific interpretation. This is the layer outside the scope of the determ
 
 The current version of FeatureGraph is built specifically for oscillatory scientific and engineering signals, but the platform can be adapted and customized to work with other types of timeseries data. FeatureGraph does not retain or store raw data within the service, and only the constructed objects are available to be queried. 
 
-The current compiler is featuregraph-core, installable with pip install featuregraph-core. More on the architecture: compiler paper.
+The current compiler is featuregraph-core, installable with `pip install featuregraph-core`. More on the architecture: [compiler paper]([https://example.com](https://github.com/featuregraph/featuregraph-core/blob/main/artifacts/paper/compiler/smoothing.md)).
 
 ## Using FeatureGraph with language models for data access
 
