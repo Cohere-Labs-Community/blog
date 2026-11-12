@@ -49,9 +49,9 @@ Non-oscillatory signal behavior patterns are also in use as object construction 
 
 BIDMC and CapnoBase are two public datasets of respiration recordings that measure breathing using different signals and sampling frequencies. FeatureGraph works in one-second intervals for both datasets, so the same measures can be computed on each. 
 
-{% include figure.liquid path="assets/img/breaths.png" alt="Two breath objects" caption="Raw respiration data gets converted to two breath objects." %}
+{% include figure.liquid path="assets/img/2026-11-11-featuregraph-automating-timeseries-analysis/breaths.png" alt="Two breath objects" caption="Raw respiration data from a BIDMC recording gets converted to two breath objects. The accuracy of the objects is inspectable and verifiable at the point of construction. " %}
 
-In this case the constructed objects are the two breaths from a BIDMC recording. The accuracy of the objects is inspectable and verifiable at the point of construction. Because the construction depends only on the shape of the signal and not on outside context, the results can be traced back to the construction parameters. Each summary is stored and can be queried through the data service.
+Because the construction depends only on the shape of the signal and not on outside context, the results can be traced back to the construction parameters. Each summary is stored and can be queried through the data service.
 
 ## A technical look into FeatureGraph
 
@@ -112,7 +112,7 @@ The scientific interpretation or query layer in FeatureGraph is composed of 5 ag
 
 **Translator**: maps a new domain’s vocabulary onto the schema. This role is deferred until a later release. For now, each domain’s choices are made by hand and recorded.
 
-{% include figure.liquid path="assets/img/agents.png" alt="Agent construction" caption="Two agent types are built, with one in progress and two planned." %}
+{% include figure.liquid path="assets/img/2026-11-11-featuregraph-automating-timeseries-analysis/agents.png" alt="Agent construction" caption="Two agent types are built, with one in progress and two planned." %}
 
 The developing stage is an agent loop that generates hypotheses and translates queries inside the language model, while the analysis itself runs outside it. This has two potential benefits:
 
