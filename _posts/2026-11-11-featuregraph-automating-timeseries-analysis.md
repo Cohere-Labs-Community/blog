@@ -1,6 +1,6 @@
 ---
 layout: distill
-title: "FeatureGraph: automating scientific and engineering time-series analysis"
+title: "FeatureGraph: Automating Scientific and Engineering Time-Series Analysis"
 date: 2026-11-12 11:00:00
 description: "Turning a time-series signal recording into a deterministic, reusable computational record."
 author: "Nazia Habib"
