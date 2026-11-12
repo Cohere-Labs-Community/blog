@@ -77,7 +77,7 @@ The current compiler is featuregraph-core, installable with pip install featureg
 
 ## Using FeatureGraph with language models for data access
 
-FeatureGraph is building out the option to use natural-language data retrieval. A demo on a small mockup table uses an agent built on Cohere’s [Command A](https://featuregraph.ai/demo.html)). The values in the table are not derived from real data. Cycle count here refers to the number of breaths in a recording, and mean symmetry is the mean per-breath symmetry for the recording.
+FeatureGraph is building out the option to use natural-language data retrieval. A demo on a small mockup table uses an agent built on Cohere’s [Command A](https://featuregraph.ai/demo.html). The values in the table are not derived from real data. Cycle count here refers to the number of breaths in a recording, and mean symmetry is the mean per-breath symmetry for the recording.
 
 A user question is sent as written:
 
