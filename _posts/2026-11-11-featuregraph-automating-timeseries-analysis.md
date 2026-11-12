@@ -1,7 +1,7 @@
 ---
 layout: distill
 title: "FeatureGraph: automating and standardizing scientific and engineering timeseries analysis"
-date: YYYY-MM-DD HH:MM:SS
+date: 2026-11-12 11:00:00
 description: "Scientists and researchers carry out a lot of repeated ad hoc coding work and end up with data artifacts that diverge and create multiple sources of truth; FeatureGraph can start to solve the problem by standardizing researcher work."
 author: "Nazia Habib"
 authors:
