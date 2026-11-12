@@ -53,6 +53,64 @@ BIDMC and CapnoBase are two public datasets of respiration recordings that measu
 
 In this case the constructed objects are the two breaths from a BIDMC recording. The accuracy of the objects is inspectable and verifiable at the point of construction. Because the construction depends only on the shape of the signal and not on outside context, the results can be traced back to the construction parameters. Each summary is stored and can be queried through the data service.
 
+## A technical look into FeatureGraph
+
+FeatureGraph has two parts: the compiler and the query layer. The compiler turns timeseries data into explicit objects, and the query layer allows the objects to be delivered in an analysis.
+
+## The compiler: P/D/O/M/S
+
+Every object FeatureGraph produces moves through five layers. The first four layers of the compiler are built, fully deterministic, and run completely outside any language model. The fifth layer is being built to work with both human queries and agent-driven loops.
+
+P - primitive. A built-in compiler operation trusted by construction. Example: identifying the rising or falling state in an oscillation, or calculating how much a physical quantity has exceeded a threshold over time.
+D - definition. A parameter or configuration chosen by the user or supplied from outside the compiler, such as window size.
+O - object. The compiled output of a definition, such as the amplitudes, periods, or durations of individual waves in a sample.
+M - measure. A derived quantitative value computed from one or more objects, such as average duration or maximum temporal asymmetry.
+S - scientific interpretation. This is the layer outside the scope of the deterministic compiler. It is a claim about what the measures mean, written by a person or agent.
+
+The current version of FeatureGraph is built specifically for oscillatory scientific and engineering signals, but the platform can be adapted and customized to work with other types of timeseries data. FeatureGraph does not retain or store raw data within the service, and only the constructed objects are available to be queried. 
+
+The current compiler is featuregraph-core, installable with pip install featuregraph-core. More on the architecture: compiler paper.
+
+## Using FeatureGraph with language models for data access
+
+FeatureGraph is building out the option to use natural-language data retrieval. A demo on a small mockup table uses an agent built on Cohere’s Command A. The values in the table are not derived from real data. Cycle count here refers to the number of breaths in a recording, and mean symmetry is the mean per-breath symmetry for the recording.
+
+A user question is sent as written:
+
+Among confident CapnoBase cases, which are outliers in BOTH the number of detected cycles and mean temporal symmetry? An outlier is a value at least 1.5 sample standard deviations from the mean of that measure across the confident cases in that dataset.
+
+The agent's exposed response is a JSON query:
+
+{
+  "op": "intersect",
+  "of": [
+    {"op": "outliers", "measure": "cycle_count", "z": 1.5,
+     "from": {"dataset": "capnobase", "is_confident": true}},
+    {"op": "outliers", "measure": "mean_symmetry", "z": 1.5,
+     "from": {"dataset": "capnobase", "is_confident": true}}
+  ]
+}
+
+The agent itself writes the query, translating it from natural language, and a separate Python program outside the agent checks the query and runs it. It confirms that the query is well-formed, that the dataset it names exists in the table, and that it can run. 
+
+## The query layer: ongoing development
+
+The scientific interpretation or query layer in FeatureGraph is composed of 5 agent types. 
+
+**Investigator**: proposes hypotheses as labeled free text. Nothing becomes a finding until tested. It can be replaced by human-authored queries.
+**Tester**: writes specs that run through an outside deterministic program called the executor, checked by validation and held-out data. This is the agent type built for the Command A demo linked above.
+**Critic**: judges whether a stated finding follows from what was actually run.
+**Recorder**: writes the provenance record from run logs.
+**Translator**: maps a new domain’s vocabulary onto the schema. This role is deferred until a later release. For now, each domain’s choices are made by hand and recorded.
+
+{% include figure.liquid path="assets/img/agents.png" alt="Agent construction" caption="Two agent types are built, with one in progress and two planned." %}
+
+The developing stage is an agent loop that generates hypotheses and translates queries inside the language model, while the analysis itself runs outside it. This has two potential benefits:
+
+- The entire analysis can be tracked with receipts, rerun outside the loop, and checked for accuracy, 
+- The loop can potentially be run on a more cost-efficient model than the frontier-size models that currently do open-ended research and hypothesis testing.
+  
+The output is a short, usually 2-3 page analysis stub that a human researcher can pick up, verify, and continue to build on. The existing research record can be found here. 
 
 
 
