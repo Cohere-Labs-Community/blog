@@ -26,6 +26,7 @@ Do not reintroduce removed collections or features unless explicitly asked: publ
 
 ```bash
 docker compose up
+npm ci # installs the pinned Prettier version
 npx prettier . --write
 docker compose run --rm -e JEKYLL_ENV=production jekyll bundle exec jekyll build
 ```
