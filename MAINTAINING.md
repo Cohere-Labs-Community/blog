@@ -17,7 +17,12 @@ Notes for the people who review PRs and keep the site running. For writing posts
 
 A deploy takes about two minutes. To redeploy without a new commit, go to **Actions → Deploy site → Run workflow** on `main`.
 
-**Future-dated posts:** production builds skip posts whose `date` is in the future. Such a post only appears after a deploy that runs on or after its date. If a merged post is missing, check its `date`, then run **Deploy site** manually once that date has passed.
+**Future-dated posts:** production builds skip posts whose `date` is in the future, so you can merge a post early and it publishes itself. Every hour (at :17), **Deploy site** checks whether any post's date has passed since the last production run (`.github/scripts/posts-due.sh`). If one has, it redeploys; otherwise the run finishes without deploying. A post goes live within about an hour of its `date`. Dates without an offset are read as UTC, because `_config.yml` sets no `timezone:`.
+
+Two GitHub behaviors to know about scheduled runs:
+
+- GitHub turns off scheduled workflows in public repositories after 60 days without repository activity. If posts stop publishing on their own, open **Actions → Deploy site** and choose **Enable workflow**, or run it manually.
+- Failure emails for scheduled runs go to the person who last changed the `cron:` line in `deploy.yml`. To take over these emails, edit that line in a PR, for example by changing the minute.
 
 ## Reviewing PRs
 
