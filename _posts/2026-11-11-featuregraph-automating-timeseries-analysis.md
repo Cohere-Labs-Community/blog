@@ -21,21 +21,21 @@ Scientific and engineering timeseries data analysis is not standardized, which m
 
 Here's a familiar experience for a lot of researchers and data scientists:
 
-**Researcher work and ad hoc analysis gets thrown away, forgotten, and carried out again and again.** The same people on the same team are writing slightly different code, the same problems are being solved over and over, and boilerplate code gets reused in slightly different forms. Code regularly gets written to be used for one analysis or study and called up again months later, and often the work is saved in a notebook using outdated code on previous versions of the data, broken dependencies, or logic that no longer applies. 
+**Researcher work and ad hoc analysis gets thrown away, forgotten, and carried out again and again.** The same people on the same team are writing slightly different code, the same problems are being solved over and over, and boilerplate code gets reused in slightly different forms. Code regularly gets written to be used for one analysis or study and called up again months later, and often the work is saved in a notebook using outdated code on previous versions of the data, broken dependencies, or logic that no longer applies.
 
-**Divergent data sources create multiple sources of truth.** Teams sometimes try to sidestep the problem of disposable code buried in notebooks by creating reusable centralized code libraries. But disposable code is only part of the issue. The other, far more consequential part is the data artifacts teams create, including not only static files but databases and data services accessible to downstream users. These created artifacts, which all serve as sources of truth, get handed around, diverge from each other, and get recreated with different expectations. 
+**Divergent data sources create multiple sources of truth.** Teams sometimes try to sidestep the problem of disposable code buried in notebooks by creating reusable centralized code libraries. But disposable code is only part of the issue. The other, far more consequential part is the data artifacts teams create, including not only static files but databases and data services accessible to downstream users. These created artifacts, which all serve as sources of truth, get handed around, diverge from each other, and get recreated with different expectations.
 
-**Computations and derivations disagree and are therefore not trusted.** A research team within an organization makes its own decisions on computation parameters, and those decisions are often not cross-compared with those of other research groups. When different teams give slightly or even significantly different answers to the same question, there is not always an obvious way to track where the disagreement came from. 
+**Computations and derivations disagree and are therefore not trusted.** A research team within an organization makes its own decisions on computation parameters, and those decisions are often not cross-compared with those of other research groups. When different teams give slightly or even significantly different answers to the same question, there is not always an obvious way to track where the disagreement came from.
 
 **The problem is invisible until it isn't.** Timeseries derivations slowly and imperceptibly become less trustworthy the less reproducible they are and the more potential sources of truth exist. A team only becomes aware of the scope of the problem when a study or report expected to take hours to produce ends up taking days or weeks because the "correct" numbers have to be hunted down.
 
 ## The project
 
-FeatureGraph proposes to build a solution for two aspects of the problem: the repeated construction of derivations from timeseries scientific and engineering data, and how that derived work is accessed. It provides a persistent store both where raw timeseries data is automatically processed and summarized and where the results of previous analysis work are verified, recorded, and immediately available as one source of truth. 
+FeatureGraph proposes to build a solution for two aspects of the problem: the repeated construction of derivations from timeseries scientific and engineering data, and how that derived work is accessed. It provides a persistent store both where raw timeseries data is automatically processed and summarized and where the results of previous analysis work are verified, recorded, and immediately available as one source of truth.
 
 Research teams run analyses and derive results the same way every time, using explicit sets of construction assumptions. They query the results of each analysis from one place where its provenance is clearly defined. Provenance, assumptions, and accuracy can be tracked and verified by construction.
 
-By coupling construction and access, assumptions can be changed and a study rerun from the same access point with minimal work. Even studies that genuinely need to be carried out multiple times in slightly different ways are all recorded, stored, and accessed from the same source. An analysis on the same data that needs different smoothing window parameters, sampling intervals, or summary-level filters creates a new defined study, so the difference is visible and recorded. 
+By coupling construction and access, assumptions can be changed and a study rerun from the same access point with minimal work. Even studies that genuinely need to be carried out multiple times in slightly different ways are all recorded, stored, and accessed from the same source. An analysis on the same data that needs different smoothing window parameters, sampling intervals, or summary-level filters creates a new defined study, so the difference is visible and recorded.
 
 An additional benefit of using FeatureGraph is the ability to natively automate research tasks with AI agents in constrained workflows, allowing language models to construct and use the same derived studies as human researchers. Ongoing development on this is discussed in later sections.
 
@@ -47,7 +47,7 @@ The same object creation logic gets applied to other oscillatory behaviors like 
 
 Non-oscillatory signal behavior patterns are also in use as object construction templates, and objects other than individual waves can be created from oscillatory signals, but that is not discussed in this post.
 
-BIDMC and CapnoBase are two public datasets of respiration recordings that measure breathing using different signals and sampling frequencies. FeatureGraph works in one-second intervals for both datasets, so the same measures can be computed on each. 
+BIDMC and CapnoBase are two public datasets of respiration recordings that measure breathing using different signals and sampling frequencies. FeatureGraph works in one-second intervals for both datasets, so the same measures can be computed on each.
 
 {% include figure.liquid path="assets/img/2026-11-11-featuregraph-automating-timeseries-analysis/breaths.png" alt="Two breath objects" caption="Raw respiration data from a BIDMC recording gets converted to two breath objects. The accuracy of the objects is inspectable and verifiable at the point of construction. " %}
 
@@ -71,7 +71,7 @@ M - measure. A derived quantitative value computed from one or more objects, suc
 
 S - scientific interpretation. This is the layer outside the scope of the deterministic compiler. It is a claim about what the measures mean, written by a person or agent.
 
-The current version of FeatureGraph is built specifically for oscillatory scientific and engineering signals, but the platform can be adapted and customized to work with other types of timeseries data. FeatureGraph does not retain or store raw data within the service, and only the constructed objects are available to be queried. 
+The current version of FeatureGraph is built specifically for oscillatory scientific and engineering signals, but the platform can be adapted and customized to work with other types of timeseries data. FeatureGraph does not retain or store raw data within the service, and only the constructed objects are available to be queried.
 
 The current compiler is featuregraph-core, installable with `pip install featuregraph-core`. More on the architecture: [compiler paper](https://github.com/featuregraph/featuregraph-core/blob/main/artifacts/paper/compiler/smoothing.md).
 
@@ -84,6 +84,7 @@ A user question is sent as written:
 Among confident CapnoBase cases, which are outliers in BOTH the number of detected cycles and mean temporal symmetry? An outlier is a value at least 1.5 sample standard deviations from the mean of that measure across the confident cases in that dataset.
 
 The agent's exposed response is a JSON query:
+
 ```
 {
   "op": "intersect",
@@ -96,11 +97,11 @@ The agent's exposed response is a JSON query:
 }
 ```
 
-The agent itself writes the query, translating it from natural language, and a separate Python program outside the agent checks the query and runs it. It confirms that the query is well-formed, that the dataset it names exists in the table, and that it can run. 
+The agent itself writes the query, translating it from natural language, and a separate Python program outside the agent checks the query and runs it. It confirms that the query is well-formed, that the dataset it names exists in the table, and that it can run.
 
 ## The query layer: ongoing development
 
-The scientific interpretation or query layer in FeatureGraph is composed of 5 agent types. 
+The scientific interpretation or query layer in FeatureGraph is composed of 5 agent types.
 
 **Investigator**: proposes hypotheses as labeled free text. Nothing becomes a finding until tested. It can be replaced by human-authored queries.
 
@@ -116,10 +117,7 @@ The scientific interpretation or query layer in FeatureGraph is composed of 5 ag
 
 The developing stage is an agent loop that generates hypotheses and translates queries inside the language model, while the analysis itself runs outside it. This has two potential benefits:
 
-- The entire analysis can be tracked with receipts, rerun outside the loop, and checked for accuracy, 
+- The entire analysis can be tracked with receipts, rerun outside the loop, and checked for accuracy,
 - The loop can potentially be run on a more cost-efficient model than the frontier-size models that currently do open-ended research and hypothesis testing.
-  
-The output is a short, usually 2-3 page analysis stub that a human researcher can pick up, verify, and continue to build on. The existing research record can be found [here](https://github.com/featuregraph/featuregraph/tree/main/artifacts/studies). 
 
-
-
+The output is a short, usually 2-3 page analysis stub that a human researcher can pick up, verify, and continue to build on. The existing research record can be found [here](https://github.com/featuregraph/featuregraph/tree/main/artifacts/studies).
