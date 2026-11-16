@@ -31,20 +31,10 @@ jobs:
         with:
           ruby-version: "3.3"
           bundler-cache: true
-      - name: Update _config.yml ⚙️
-        uses: fjogeleit/yaml-update-action@main
-        with:
-          commitChange: false
-          valueFile: "_config.yml"
-          changes: |
-            {
-              "giscus.repo": "${{ github.repository }}",
-              "baseurl": ""
-            }
       - name: Install and Build 🔧
         run: |
           export JEKYLL_ENV=production
-          bundle exec jekyll build
+          bundle exec jekyll build --baseurl ""
       - name: Purge unused CSS 🧹
         run: |
           npm install -g purgecss

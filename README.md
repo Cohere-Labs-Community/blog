@@ -34,11 +34,14 @@ docker compose run --rm -e JEKYLL_ENV=production jekyll bundle exec jekyll build
 
 See [`CONTRIBUTING.md`](CONTRIBUTING.md) for topic guidance, the post workflow, the Markdown front matter template, and supported post options such as authors, citations, plots, Mermaid diagrams, tabs, and research-writing blocks.
 
+Maintainers: see [`MAINTAINING.md`](MAINTAINING.md) for how publishing, reviews, PR previews, and troubleshooting work.
+
 ## Verification
 
 Before opening a PR or publishing, run:
 
 ```bash
+npm ci # installs the pinned Prettier version
 npx prettier . --write
 docker compose run --rm -e JEKYLL_ENV=production jekyll bundle exec jekyll build
 ```

@@ -21,6 +21,7 @@ This repository is the Cohere Labs Community research blog. It is a trimmed Jeky
 
 ```bash
 docker compose up
+npm ci # installs the pinned Prettier version
 npx prettier . --write
 docker compose run --rm -e JEKYLL_ENV=production jekyll bundle exec jekyll build
 ```

@@ -88,6 +88,7 @@ Once your post is ready in Markdown, submit it as a pull request. We will handle
 Before requesting review, run:
 
 ```bash
+npm ci # installs the pinned Prettier version
 npx prettier . --write
 docker compose run --rm -e JEKYLL_ENV=production jekyll bundle exec jekyll build
 ```
