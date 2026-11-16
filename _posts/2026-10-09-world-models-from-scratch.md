@@ -30,7 +30,7 @@ A world model learns how an environment changes over time and predicts what migh
 
 ## Why I find it exciting
 
-The idea of simulating different possible futures fascinates me, almost like the TV series *Person of Interest*. I often wonder how a different decision could have changed an outcome, or what life might have looked like if I had taken another path.
+The idea of simulating different possible futures fascinates me, almost like the TV series _Person of Interest_. I often wonder how a different decision could have changed an outcome, or what life might have looked like if I had taken another path.
 
 Technically, world models offer a way to simulate alternative futures and explore how different actions influence outcomes. This opens up exciting possibilities for counterfactual reasoning, planning, and decision-making in AI agents.
 

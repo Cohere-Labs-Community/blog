@@ -118,8 +118,8 @@ We ran a thin Cohere `command-a` auto-interpreter over each feature's top-activa
 | ------- | ------------- | -------------------------------------------- | ---------------------------------------------- |
 | #100    | language · jv | Javanese relative pronoun _sing_             | …cara sing padha karo materi liyane sing katon |
 | #10734  | language · de | German pronouns & particles (_sie, die, zu_) | …damit sie ihren Träumen…                      |
-| #2529   | language · ne | Nepali verb-conjugation endings              | …थियो भनेर भन्नुभ…                             |
-| #15     | script · Thai | Thai-script detection (fires on ~all Thai)   | …ระหว่างการพูดคุย…                             |
+| #2529   | language · ne | Nepali verb-conjugation endings              | …थियो भनेर भन्नुभ…                                |
+| #15     | script · Thai | Thai-script detection (fires on ~all Thai)   | …ระหว่างการพูดคุย…                                |
 
 One caveat worth stating plainly: **auto-interp is noisy here.** It's a single quick pass, and for a meaningful fraction of features the top-activating example doesn't actually match the label (for example, a "Japanese politeness" feature whose strongest activation is on a Tamil token). So we only foreground labels we verified by hand, and treat the auto-labels as a starting point, not ground truth. The verified ones, at least, are discrete and nameable, not directions lost in a soup.
 

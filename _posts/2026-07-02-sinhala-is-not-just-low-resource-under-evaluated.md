@@ -50,7 +50,7 @@ For example, a formal Sinhala prompt might look like this:
 
 | Prompt type                  | Example                                    |
 | ---------------------------- | ------------------------------------------ |
-| Formal Sinhala               | අද කාලගුණය කෙසේ ද?                         |
+| Formal Sinhala               | අද කාලගුණය කෙසේ ද?                          |
 | Romanized Sinhala / Singlish | ada weather eka kohomada?                  |
 | Code-mixed Sinhala-English   | heta meeting ekata kalin summary eka denna |
 
