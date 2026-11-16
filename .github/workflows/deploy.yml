@@ -48,16 +48,59 @@ on:
       - "!INSTALL.md"
       - "!README.md"
   workflow_dispatch:
+  # Production builds skip future-dated posts. Check hourly and redeploy once a post comes due.
+  schedule:
+    - cron: "17 * * * *"
 
+# A newer run of the same PR replaces the older one. Production runs get their own group
+# here; the deploy job's concurrency below runs them one at a time without cancelling.
 concurrency:
-  group: deploy-site-${{ github.event_name == 'pull_request' && format('pr-{0}', github.event.pull_request.number) || format('push-{0}', github.ref) }}
+  group: deploy-site-${{ github.event_name == 'pull_request' && format('pr-{0}', github.event.pull_request.number) || github.run_id }}
   cancel-in-progress: true
 
 permissions: {}
 
 jobs:
+  check-due:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+    outputs:
+      due: ${{ steps.due.outputs.due }}
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - name: Find posts due since the last deploy 📅
+        id: due
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          # Start time of the last successful non-PR run of this workflow (push, manual, or schedule).
+          last=$(gh api "repos/$REPO/actions/workflows/deploy.yml/runs?branch=main&status=success&per_page=100" \
+            --jq '[.workflow_runs[] | select(.event != "pull_request")][0].run_started_at // empty')
+          echo "Last successful production run started at: ${last:-never}"
+          due=$(.github/scripts/posts-due.sh "$(date -d "${last:-1970-01-01T00:00:00Z}" +%s)")
+          if [ -n "$due" ]; then
+            printf 'Posts due since then:\n%s\n' "$due"
+            echo "due=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "No posts came due; skipping deploy."
+            echo "due=false" >> "$GITHUB_OUTPUT"
+          fi
+
   deploy:
-    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    needs: check-due
+    if: >-
+      !cancelled() && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' ||
+      needs.check-due.outputs.due == 'true')
+    concurrency:
+      group: deploy-site-production
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     permissions:
       contents: write
