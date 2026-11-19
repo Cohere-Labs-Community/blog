@@ -64,6 +64,12 @@ authors:
     bio: "Chris Sinatra is a machine learning engineer with production experience in personalization, causal inference, and experimentation. His research is now focused on interpretability and alignment at the intersection of model cognition and AI system design."
     affiliations:
       name: "Cohere Labs Community"
+  - name: "Almustapha Yusuf"
+    url: "https://www.linkedin.com/in/almustapha-yusuf-3275471b7/"
+    image: "assets/img/2026-11-17-j-lens-bias/Almustapha_Yusuf_Avatar.jpg"
+    bio: "Almustapha Yusuf is an MSc student in Artificial Intelligence Engineering at Istinye University and a software engineer with a growing focus on AI research. His interests include mechanistic interpretability, bias in large language models, and trustworthy AI. He is particularly interested in understanding how language models represent information internally and how these representations influence their behavior."
+    affiliations:
+      name: "Cohere Labs Community, Istinye University"
 
 tags: interpretability bias fairness safety
 bibliography: 2026-11-17-j-lens-bias.bib
