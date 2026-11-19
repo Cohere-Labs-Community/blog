@@ -42,7 +42,7 @@ authors:
       name: "Cohere Labs Community"
   - name: "Radnitz Oriasotie"
     url: "https://www.linkedin.com/in/radnitz-oriasotie-141562300"
-    image: "assets/img/2026-11-17-j-lens-bias/Radnitz.png"
+    image: "assets/img/2026-11-17-j-lens-bias/radnitz.png"
     bio: "Radnitz Oriasotie is an early-career Machine learning  researcher. Their interests include model interpretability, scalable oversight, and post training alignment."
     affiliations:
       name: "Cohere Labs Community"
