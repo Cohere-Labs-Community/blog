@@ -7,7 +7,7 @@ author: "J-Lens Bias Working Group"
 authors:
   - name: "Joana da Matta"
     url: "https://www.notion.so/jodamatta/Joana-da-Matta-s-Homepage-817ef20b2b1e4dad8a78407d4ea26bc0?pvs=4"
-    image: "assets/img/2026-11-17-j-lens-bias/IMG_4769.jpg"
+    image: "assets/img/2026-11-17-j-lens-bias/IMG_4769.JPG"
     bio: "Joana is a MSc Student in Computer Science researching fairness and interpretability in machine learning, and co-leads the ML Understanding program at the Cohere Labs Community."
     affiliations:
       name: "Cohere Labs Community, Unicamp"
